@@ -84,7 +84,7 @@
 }
 
 .site-loader-label {
-  font-family: var(--font-ui, 'Inter', sans-serif);
+  font-family: var(--font-ui, system-ui, sans-serif);
   font-size: 0.58rem;
   font-weight: 600;
   letter-spacing: 0.32em;

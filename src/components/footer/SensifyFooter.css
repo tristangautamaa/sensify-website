@@ -1,0 +1,381 @@
+/* ============================================================
+   Sensify cinematic footer — final conversion moment
+   ============================================================ */
+
+.sf-footer {
+  position: relative;
+  background: var(--color-hero-bg, #030609);
+  color: var(--color-text, #f5f7fa);
+}
+
+.sf-curtain {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(to bottom, #07111c 0%, #030609 45%);
+  will-change: clip-path;
+}
+
+/* ---------- Backdrop layers ---------- */
+
+.sf-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(rgba(245, 247, 250, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245, 247, 250, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(85% 75% at 50% 45%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(85% 75% at 50% 45%, black 30%, transparent 100%);
+}
+
+.sf-aurora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 42% at 22% 18%, rgba(12, 68, 124, 0.5), transparent 65%),
+    radial-gradient(45% 38% at 80% 30%, rgba(55, 138, 221, 0.22), transparent 60%),
+    radial-gradient(50% 40% at 60% 95%, rgba(216, 90, 48, 0.14), transparent 65%);
+  filter: blur(2px);
+}
+
+/* ---------- Giant background type ---------- */
+
+.sf-giant {
+  position: absolute;
+  left: 50%;
+  bottom: -0.14em;
+  z-index: 1;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(7rem, 21vw, 24rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  white-space: nowrap;
+  color: transparent;
+  background: linear-gradient(
+    to top,
+    rgba(55, 138, 221, 0.16) 0%,
+    rgba(245, 247, 250, 0.05) 60%,
+    rgba(245, 247, 250, 0.015) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------- Diagonal marquee ---------- */
+
+.sf-marquee-band {
+  position: absolute;
+  top: clamp(64px, 10vh, 120px);
+  left: -6%;
+  z-index: 1;
+  width: 112%;
+  transform: rotate(-2.6deg);
+  border-top: 1px solid var(--color-border, rgba(245, 247, 250, 0.14));
+  border-bottom: 1px solid var(--color-border, rgba(245, 247, 250, 0.14));
+  background: rgba(3, 6, 9, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sf-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: sf-marquee 36s linear infinite;
+}
+
+.sf-marquee-copy {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 0;
+}
+
+.sf-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  color: rgba(245, 247, 250, 0.55);
+  white-space: nowrap;
+}
+
+.sf-marquee-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-cta, #d85a30);
+  opacity: 0.7;
+}
+
+@keyframes sf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Main content ---------- */
+
+.sf-content {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.6rem;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(150px, 22vh, 220px) clamp(24px, 5vw, 72px) clamp(40px, 6vh, 80px);
+}
+
+.sf-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  color: var(--color-accent-blue, #378add);
+}
+
+.sf-eyebrow::before,
+.sf-eyebrow::after {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: rgba(55, 138, 221, 0.45);
+}
+
+.sf-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3.4rem, 9vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  color: var(--color-text, #f5f7fa);
+  text-wrap: balance;
+}
+
+.sf-sub {
+  max-width: 52ch;
+  font-size: clamp(0.95rem, 1.15vw, 1.08rem);
+  line-height: 1.7;
+  color: var(--color-text-muted, rgba(245, 247, 250, 0.68));
+}
+
+/* ---------- Magnetic pills ---------- */
+
+.sf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-top: 0.6rem;
+}
+
+.sf-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.05rem 1.9rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  will-change: transform;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.sf-pill-primary {
+  background: var(--color-cta, #d85a30);
+  color: var(--color-text, #f5f7fa);
+  box-shadow: 0 14px 44px rgba(216, 90, 48, 0.32);
+}
+
+.sf-pill-primary:hover {
+  background: var(--color-cta-hover, #c74d27);
+  box-shadow: 0 18px 54px rgba(216, 90, 48, 0.42);
+}
+
+.sf-pill-arrow {
+  transition: transform 0.3s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.sf-pill-primary:hover .sf-pill-arrow {
+  transform: translateX(4px);
+}
+
+.sf-pill-outline {
+  border: 1px solid rgba(245, 247, 250, 0.26);
+  color: var(--color-text, #f5f7fa);
+  background: rgba(3, 6, 9, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.sf-pill-outline:hover {
+  border-color: var(--color-accent-blue, #378add);
+  background: rgba(55, 138, 221, 0.1);
+}
+
+.sf-pill-ghost {
+  color: rgba(245, 247, 250, 0.72);
+  background: transparent;
+}
+
+.sf-pill-ghost:hover {
+  color: var(--color-text, #f5f7fa);
+  background: rgba(245, 247, 250, 0.06);
+}
+
+/* ---------- Secondary links ---------- */
+
+.sf-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 2rem;
+  margin-top: 1.8rem;
+}
+
+.sf-link {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 250, 0.5);
+  transition: color 0.25s ease;
+}
+
+.sf-link:hover {
+  color: var(--color-accent-blue, #378add);
+}
+
+/* ---------- Bottom bar ---------- */
+
+.sf-bottom {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1.5rem;
+  width: 100%;
+  max-width: 1760px;
+  margin: 0 auto;
+  padding: 1.4rem clamp(24px, 5vw, 72px) 1.6rem;
+  border-top: 1px solid var(--color-border, rgba(245, 247, 250, 0.14));
+  font-size: 0.72rem;
+  color: rgba(245, 247, 250, 0.48);
+}
+
+.sf-crafted {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(245, 247, 250, 0.38);
+}
+
+/* ---------- Back to top ---------- */
+
+.sf-top-btn {
+  position: absolute;
+  right: clamp(20px, 4vw, 56px);
+  bottom: clamp(76px, 12vh, 110px);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 247, 250, 0.2);
+  background: rgba(3, 6, 9, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--color-text, #f5f7fa);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.6, 0.2, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.sf-top-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-blue, #378add);
+  background: rgba(55, 138, 221, 0.12);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .sf-content {
+    padding-top: clamp(130px, 20vh, 170px);
+  }
+
+  .sf-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sf-actions .sf-pill {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .sf-top-btn {
+    bottom: 120px;
+  }
+
+  .sf-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-marquee-track {
+    animation: none;
+  }
+
+  .sf-curtain {
+    clip-path: none !important;
+  }
+}

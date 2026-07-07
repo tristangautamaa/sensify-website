@@ -147,6 +147,15 @@ export default function StaggeredMenu({
         </button>
       </header>
 
+      {/* Click-outside closes the panel */}
+      <button
+        type="button"
+        className="sm-backdrop"
+        aria-hidden="true"
+        tabIndex={-1}
+        onClick={closeMenu}
+      />
+
       <div className="sm-prelayers" ref={preLayersRef} aria-hidden="true">
         {colors.slice(0, 3).map((color, i) => (
           <div key={`${color}-${i}`} className="sm-prelayer" style={{ background: color }} />

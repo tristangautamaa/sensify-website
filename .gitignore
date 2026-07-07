@@ -40,3 +40,6 @@ Thumbs.db
 *.zip
 *.rar
 *.7z
+
+# Internal docs
+Sensify_Team_Brief.pdf

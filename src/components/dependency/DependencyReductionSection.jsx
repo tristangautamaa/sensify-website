@@ -1,5 +1,5 @@
 import FadeUp from '../ui/FadeUp.jsx';
-import PaymentCardCarousel from './PaymentCardCarousel.jsx';
+import PaymentRailStack from './PaymentRailStack.jsx';
 
 const PAYMENT_PATHS = [
   'QRIS',
@@ -72,7 +72,7 @@ export default function DependencyReductionSection() {
         </div>
 
         <FadeUp delay={0.2} className="min-w-0">
-          <PaymentCardCarousel />
+          <PaymentRailStack />
         </FadeUp>
       </div>
     </section>

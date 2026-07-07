@@ -1,27 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import ShaderHeroBackground from './ShaderHeroBackground.jsx';
-import SystemSignalCard from './SystemSignalCard.jsx';
 import PixelTrail from '../react-bits/PixelTrail/PixelTrail.jsx';
 import ScrollVelocity from '../react-bits/ScrollVelocity/ScrollVelocity.jsx';
-import StaggeredMenu from '../react-bits/StaggeredMenu/StaggeredMenu.jsx';
 
 import './Hero.css';
-
-// Background-keyed from Logo/logo-main.jpg (light JPG).
-// TODO: replace with the official transparent PNG/SVG logo for production.
-const sensifyLogo = '/Logo/sensify-mark.png';
-
-const menuItems = [
-  { label: 'Home', ariaLabel: 'Go to homepage', link: '#home' },
-  { label: 'Problem', ariaLabel: 'View the marketplace problem', link: '#problem' },
-  { label: 'Dependency', ariaLabel: 'View dependency reduction', link: '#dependency' },
-  { label: 'System', ariaLabel: 'View the Sensify system', link: '#system' },
-  { label: 'Experience', ariaLabel: 'View the owned brand experience', link: '#ownership' },
-  { label: 'Infrastructure', ariaLabel: 'View infrastructure deliverables', link: '#infrastructure' },
-  { label: 'AI Assistant', ariaLabel: 'View the AI assistant', link: '#assistant' },
-  { label: 'Contact', ariaLabel: 'Contact Sensify', link: '#contact' }
-];
 
 // The trail only earns its GPU cost on fine-pointer devices with motion allowed.
 function usePixelTrailEnabled() {
@@ -63,30 +46,17 @@ export default function Hero() {
         </div>
       )}
 
-      <StaggeredMenu
-        position="right"
-        items={menuItems}
-        logoUrl={sensifyLogo}
-        colors={['#0C447C', '#378ADD', '#D85A30']}
-        accentColor="#D85A30"
-        menuButtonColor="#F5F7FA"
-        openMenuButtonColor="#030609"
-        displayItemNumbering={true}
-        displaySocials={false}
-      />
-
       <main className="hero-content">
         <p className="hero-eyebrow">
           <span className="hero-eyebrow-dot" aria-hidden="true" />
           MARKETPLACE EXIT SYSTEM FOR GROWING BRANDS
         </p>
 
-        <h1 className="hero-headline">
-          {'Your marketplace is '}
-          <br className="hero-br" />
-          {'not your home. It is '}
-          <br className="hero-br" />
-          <em>rented shelf space.</em>
+        <h1 className="hero-title">
+          <span>Your marketplace</span>
+          <span>is not your home.</span>
+          <span>It is rented</span>
+          <span>shelf space.</span>
         </h1>
 
         <div className="hero-lower">
@@ -107,8 +77,6 @@ export default function Hero() {
               </a>
             </div>
           </div>
-
-          <SystemSignalCard />
         </div>
       </main>
 

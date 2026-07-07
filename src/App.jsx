@@ -1,13 +1,34 @@
 import { useEffect, useState } from 'react';
 
 import SiteLoader from './components/loader/SiteLoader.jsx';
+import StaggeredMenu from './components/react-bits/StaggeredMenu/StaggeredMenu.jsx';
 import Hero from './components/hero/Hero.jsx';
 import ProblemCardsSection from './components/problem/ProblemCardsSection.jsx';
+import AIAssistantCtaSection from './components/assistant/AIAssistantCtaSection.jsx';
 import DependencyReductionSection from './components/dependency/DependencyReductionSection.jsx';
 import SensifySystemSection from './components/system/SensifySystemSection.jsx';
-import OwnedExperienceRevealSection from './components/ownership/OwnedExperienceRevealSection.jsx';
+import OwnedExperienceComparisonSection from './components/ownership/OwnedExperienceComparisonSection.jsx';
 import InfrastructureSection from './components/infrastructure/InfrastructureSection.jsx';
-import AIAssistantCtaSection from './components/assistant/AIAssistantCtaSection.jsx';
+import TestimonialNotesSection from './components/testimonials/TestimonialNotesSection.jsx';
+import SmartFAQSection from './components/faq/SmartFAQSection.jsx';
+import SensifyFooter from './components/footer/SensifyFooter.jsx';
+
+// Background-keyed from Logo/logo-main.jpg (light JPG).
+// TODO: replace with the official transparent PNG/SVG logo for production.
+const sensifyLogo = '/Logo/sensify-mark.png';
+
+const menuItems = [
+  { label: 'Home', ariaLabel: 'Go to homepage', link: '#home' },
+  { label: 'Problem', ariaLabel: 'View the marketplace problem', link: '#problem' },
+  { label: 'AI Assistant', ariaLabel: 'View the AI assistant', link: '#assistant' },
+  { label: 'Dependency', ariaLabel: 'View dependency reduction', link: '#dependency' },
+  { label: 'System', ariaLabel: 'View the Sensify system', link: '#system' },
+  { label: 'Experience', ariaLabel: 'View the owned brand experience', link: '#ownership' },
+  { label: 'Infrastructure', ariaLabel: 'View infrastructure deliverables', link: '#infrastructure' },
+  { label: 'Notes', ariaLabel: 'View placeholder client notes', link: '#testimonials' },
+  { label: 'FAQ', ariaLabel: 'Ask Sensify a question', link: '#faq' },
+  { label: 'Contact', ariaLabel: 'Contact Sensify', link: '#contact' }
+];
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -23,32 +44,32 @@ export default function App() {
   return (
     <>
       <SiteLoader isLoading={loading} />
+
+      {/* App-level so the fixed overlay wins the root stacking context —
+          keeping it inside the hero traps the open panel behind sections
+          that create their own stacking contexts. */}
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        logoUrl={sensifyLogo}
+        colors={['#0C447C', '#378ADD', '#D85A30']}
+        accentColor="#D85A30"
+        menuButtonColor="#F5F7FA"
+        openMenuButtonColor="#030609"
+        displayItemNumbering={true}
+        displaySocials={false}
+      />
+
       <Hero />
       <ProblemCardsSection />
+      <AIAssistantCtaSection />
       <DependencyReductionSection />
       <SensifySystemSection />
-      <OwnedExperienceRevealSection />
+      <OwnedExperienceComparisonSection />
       <InfrastructureSection />
-      <AIAssistantCtaSection />
-
-      {/* Minimal contact anchor — full footer comes later */}
-      <footer
-        id="contact"
-        className="flex flex-col items-start gap-5 bg-[#030609] px-6 py-12 text-[#F5F7FA] md:flex-row md:items-center md:justify-between md:px-12"
-      >
-        <div>
-          <p className="text-lg font-semibold tracking-wide">Sensify®</p>
-          <p className="mt-1 text-[13.5px] text-[rgba(245,247,250,0.68)]">
-            Build the channel your brand actually owns.
-          </p>
-        </div>
-        <a
-          href="mailto:hello@sensify.example"
-          className="rounded-full bg-[#D85A30] px-6 py-3 text-sm font-semibold text-[#F5F7FA] transition-colors hover:bg-[#c74d27]"
-        >
-          Book a consultation
-        </a>
-      </footer>
+      <TestimonialNotesSection />
+      <SmartFAQSection />
+      <SensifyFooter />
     </>
   );
 }

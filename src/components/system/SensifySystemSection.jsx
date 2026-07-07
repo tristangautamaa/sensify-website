@@ -68,7 +68,7 @@ export default function SensifySystemSection() {
             </p>
             <a
               href="#infrastructure"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[rgba(12,68,124,0.25)] px-5 py-2.5 text-[0.8rem] font-semibold text-[#0C447C] transition-colors hover:border-[#0C447C]"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[rgba(12,68,124,0.2)] bg-transparent px-5 py-2.5 text-[0.8rem] font-semibold text-[#0C447C] transition-colors hover:border-[#0C447C] hover:bg-[rgba(12,68,124,0.08)]"
             >
               View the operating system
               <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden="true" />
