@@ -1,0 +1,248 @@
+.staggered-menu-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* ---------- Header ---------- */
+
+.staggered-menu-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px clamp(24px, 5vw, 72px);
+}
+
+.staggered-menu-header > * {
+  pointer-events: auto;
+}
+
+.sm-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.sm-logo img {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+
+.sm-logo-word,
+.sm-logo-text {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  letter-spacing: -0.02em;
+  color: var(--color-text, #f5f7fa);
+  transition: color 0.3s ease;
+}
+
+.sm-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--sm-btn, #f5f7fa);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  transition: color 0.35s ease;
+}
+
+.staggered-menu-wrapper[data-open] .sm-toggle {
+  color: var(--sm-btn-open, #030609);
+}
+
+.sm-toggle-textWrap {
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  overflow: hidden;
+}
+
+.sm-toggle-textInner {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.staggered-menu-wrapper[data-open] .sm-toggle-textInner {
+  transform: translateY(-1em);
+}
+
+.sm-icon {
+  position: relative;
+  width: 13px;
+  height: 13px;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.sm-icon-line {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+.sm-icon-line-v {
+  transform: rotate(90deg);
+}
+
+.staggered-menu-wrapper[data-open] .sm-icon {
+  transform: rotate(225deg);
+}
+
+/* ---------- Prelayers + panel ---------- */
+
+.sm-prelayers {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(320px, 38vw, 500px);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.staggered-menu-wrapper[data-position='left'] .sm-prelayers {
+  right: auto;
+  left: 0;
+}
+
+.sm-prelayer {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+
+.staggered-menu-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(320px, 38vw, 500px);
+  z-index: 10;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(90px, 14vh, 150px) clamp(28px, 3.4vw, 56px) 38px;
+  background: #f5f7fa;
+  color: #030609;
+  overflow-y: auto;
+  will-change: transform;
+}
+
+.staggered-menu-wrapper[data-position='left'] .staggered-menu-panel {
+  right: auto;
+  left: 0;
+}
+
+/* ---------- Items ---------- */
+
+.sm-panel-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+}
+
+.sm-panel-itemWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  overflow: hidden;
+  padding: 0.05em 0;
+}
+
+.sm-panel-itemLabel {
+  display: inline-block;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #030609;
+  transition: color 0.25s ease;
+  will-change: transform;
+}
+
+.sm-panel-itemWrap:hover .sm-panel-itemLabel,
+.sm-panel-itemWrap:focus-visible .sm-panel-itemLabel {
+  color: var(--sm-accent, #d85a30);
+  font-style: italic;
+}
+
+.sm-panel-itemIndex {
+  padding-top: 0.5em;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--sm-accent, #d85a30);
+}
+
+/* ---------- Socials + meta ---------- */
+
+.sm-socials {
+  display: flex;
+  gap: 1.4rem;
+  margin-top: 2.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(3, 6, 9, 0.65);
+}
+
+.sm-panel-meta {
+  margin-top: auto;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(3, 6, 9, 0.14);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(3, 6, 9, 0.55);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+  .staggered-menu-panel,
+  .sm-prelayers {
+    width: 100%;
+  }
+
+  .sm-logo img {
+    height: 38px;
+  }
+
+  /* The light panel slides under the header on mobile — the color logo mark
+     reads fine on it, but the wordmark must flip dark to stay visible. */
+  .staggered-menu-wrapper[data-open] .sm-logo-word {
+    color: #030609;
+  }
+
+  .sm-panel-itemLabel {
+    font-size: clamp(3rem, 13vw, 4rem);
+  }
+}

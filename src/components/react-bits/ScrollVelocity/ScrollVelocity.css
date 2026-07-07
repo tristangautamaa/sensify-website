@@ -1,0 +1,19 @@
+.scroll-velocity-section {
+  position: relative;
+}
+
+.parallax {
+  position: relative;
+  overflow: hidden;
+}
+
+.scroller {
+  display: flex;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+  will-change: transform;
+}
+
+.scroller span {
+  flex-shrink: 0;
+}
