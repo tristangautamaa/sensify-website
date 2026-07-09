@@ -2,14 +2,13 @@ import { useRef } from 'react';
 import { useReducedMotion, useScroll, useTransform, motion } from 'motion/react';
 
 import FadeUp from '../ui/FadeUp.jsx';
-import PrimaryButton from '../ui/PrimaryButton.jsx';
 import AssistantDashboardMock from './AssistantDashboardMock.jsx';
 
 /**
- * AI Assistant showcase CTA — framed as a website operations co-pilot
- * (drafting briefs, organizing update tasks), not an autonomous business
- * runner. This section replaces the previously planned roadmap / packages
- * teaser / FAQ ending.
+ * AI Assistant showcase CTA — a customer-facing shopping assistant that
+ * lives on the brand's owned website: product recommendations, comparisons,
+ * payment/shipping/care questions. Preview interface only; real product
+ * data and checkout logic connect later.
  */
 export default function AIAssistantCtaSection() {
   const sectionRef = useRef(null);
@@ -25,6 +24,7 @@ export default function AIAssistantCtaSection() {
     <section
       ref={sectionRef}
       id="assistant"
+      data-header-theme="dark"
       className="relative w-full overflow-hidden"
       style={{ background: 'linear-gradient(to bottom, #030609 0%, #14191E 100%)' }}
     >
@@ -44,26 +44,33 @@ export default function AIAssistantCtaSection() {
           <div>
             <FadeUp>
               <p className="mb-6 text-[0.68rem] font-semibold tracking-[0.34em] text-[#D85A30]">
-                AI WEBSITE OPERATIONS ASSISTANT
+                AI SHOPPING ASSISTANT
               </p>
               <h2 className="font-display text-4xl leading-[1.1] text-[#F5F7FA] md:text-5xl">
-                Manage your owned channel without speaking in <em>technical tickets.</em>
+                Help customers choose faster on <em>your owned website.</em>
               </h2>
             </FadeUp>
 
             <FadeUp delay={0.15}>
               <p className="mt-6 text-[15px] leading-[1.75] text-[rgba(245,247,250,0.68)]">
-                Ask Sensify Assistant to prepare product updates, campaign page briefs, landing
-                page copy, catalog changes, and maintenance requests — so your brand can move
-                faster without hiring an internal tech team.
+                Sensify Assistant can sit inside your official website to help visitors ask for
+                recommendations, compare products, understand details, and move closer to
+                purchase without leaving your owned channel.
               </p>
             </FadeUp>
 
             <FadeUp delay={0.25}>
               <div className="mt-9 flex flex-col items-start gap-4">
-                <PrimaryButton href="#assistant-demo">Preview the assistant</PrimaryButton>
+                <a
+                  href="#assistant-demo"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-[rgba(245,247,250,0.12)] bg-[#D85A30] px-7 py-4 text-sm font-semibold text-[#F5F7FA] transition-all duration-300 hover:-translate-y-[1px] hover:bg-[#C94E28] hover:shadow-[0_18px_44px_rgba(216,90,48,0.28)] active:translate-y-0"
+                >
+                  Ask Sensify Assistant
+                  <span aria-hidden="true">→</span>
+                </a>
                 <p className="text-[12px] text-[rgba(245,247,250,0.45)]">
-                  For now, this is a product preview interface. Connect real workflows later.
+                  For now, this is a product preview interface. Real product data, inventory, and
+                  checkout logic can be connected later.
                 </p>
               </div>
             </FadeUp>

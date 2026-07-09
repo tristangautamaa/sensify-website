@@ -10,6 +10,7 @@ export default function OwnedExperienceComparisonSection() {
   return (
     <section
       id="ownership"
+      data-header-theme="dark"
       className="relative overflow-hidden bg-[#030609] px-6 py-24 text-[#F5F7FA] md:py-32"
     >
       <div className="mx-auto w-full max-w-[1180px]">
@@ -27,7 +28,9 @@ export default function OwnedExperienceComparisonSection() {
           </p>
         </FadeUp>
 
-        {/* Comparison frame */}
+        {/* Comparison frame: generic Indonesian marketplace product page vs
+            finished "Studio Label" brand website — no real marketplace
+            branding on either side. */}
         <FadeUp delay={0.15}>
           <div
             className="overflow-hidden border border-[rgba(245,247,250,0.14)] shadow-[0_40px_120px_rgba(0,0,0,0.5)]"

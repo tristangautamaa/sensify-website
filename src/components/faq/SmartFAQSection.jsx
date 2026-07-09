@@ -26,8 +26,8 @@ const FAQ_ENTRIES = [
     keywords: 'maintain, maintenance, update, monthly',
     answer:
       'Yes. Maintenance is central to Sensify. The goal is to help your brand update products, campaign pages, content, and small fixes without needing a full internal tech team.',
-    ctaText: 'Preview AI Assistant',
-    ctaLink: '#assistant',
+    ctaText: 'Ask about maintenance',
+    ctaLink: '#contact',
   },
   {
     title: 'How is this different from a web design agency?',
@@ -90,30 +90,30 @@ const FAQ_ENTRIES = [
     keywords: 'developer, hire, internal team, tech team',
     answer:
       'Not necessarily. Sensify is designed to reduce the need for early internal technical hiring by combining website setup, maintenance support, and structured update workflows.',
-    ctaText: 'Ask about maintenance',
-    ctaLink: '#assistant',
+    ctaText: 'Discuss your setup',
+    ctaLink: '#contact',
   },
   {
     title: 'Can Sensify help with campaign pages?',
     keywords: 'campaign, landing page, promo, launch',
     answer:
       'Yes. Campaign and landing pages are one of the main reasons to own a website. They let your brand create dedicated experiences for launches, promos, collections, and ads outside marketplace templates.',
-    ctaText: 'Preview campaign flow',
-    ctaLink: '#assistant',
+    ctaText: 'See the system',
+    ctaLink: '#system',
   },
   {
     title: 'What does the AI Assistant do?',
-    keywords: 'ai assistant, assistant, ai, automation',
+    keywords: 'ai assistant, assistant, ai, shopping, recommendation',
     answer:
-      'The AI Assistant is a product preview for turning business requests into clearer website update briefs, product copy drafts, campaign page outlines, catalog tasks, and maintenance requests.',
-    ctaText: 'Preview AI Assistant',
+      'The AI Assistant is a customer-facing shopping guide that sits inside your official website. It helps visitors ask for product recommendations, compare options, and get answers about payment, shipping, stock, and care — keeping the journey on your owned channel.',
+    ctaText: 'Ask Sensify Assistant',
     ctaLink: '#assistant',
   },
   {
     title: 'Is the AI Assistant connected to my website?',
     keywords: 'connected, backend, integration, ai connected',
     answer:
-      'In the current prototype, the AI Assistant should be treated as a preview interface. Real workflow connections can be planned later based on the brand’s maintenance process and technical scope.',
+      'In the current prototype, the AI Assistant should be treated as a preview interface. Real product data, inventory, and checkout logic can be connected later based on the brand’s catalog and technical scope.',
     ctaText: 'Discuss workflow',
     ctaLink: '#contact',
   },
@@ -163,6 +163,7 @@ export default function SmartFAQSection() {
   return (
     <section
       id="faq"
+      data-header-theme="dark"
       className="relative overflow-hidden bg-[#030609] px-6 py-24 text-[#F5F7FA] md:px-12 md:py-32"
     >
       {/* Ambient glow */}

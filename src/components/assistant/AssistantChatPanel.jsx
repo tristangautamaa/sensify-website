@@ -9,32 +9,32 @@ const SEED_MESSAGES = [
   {
     id: 'seed-1',
     role: 'assistant',
-    text: 'Tell me what you want to update on your website. I can turn it into a clear maintenance brief.',
+    text: 'Hi, I can help you find the right product from this brand. What are you looking for today?',
   },
   {
     id: 'seed-2',
     role: 'user',
-    text: 'We are launching a new collection next Friday. I need a landing page, 12 product updates, and WhatsApp CTA.',
+    text: 'I need something comfortable for daily use, but still looks premium.',
   },
   {
     id: 'seed-3',
     role: 'assistant',
-    text: 'Got it. I’ll prepare a campaign page structure, product update checklist, CTA copy, and a maintenance request for the Sensify team.',
+    text: 'Got it. I’ll recommend products based on comfort, material, price range, and how you plan to use them.',
   },
   {
     id: 'seed-4',
     role: 'user',
-    text: 'Can you also make the page feel more premium than our marketplace listing?',
+    text: 'Can you compare two products and tell me which one fits me better?',
   },
   {
     id: 'seed-5',
     role: 'assistant',
-    text: 'Yes. I’ll separate product storytelling, visual hierarchy, offer details, trust signals, and checkout path so the page feels like an owned brand experience.',
+    text: 'Yes. I can compare features, use cases, sizing notes, care instructions, and suggest the better option based on your preferences.',
   },
 ];
 
 const CANNED_REPLY =
-  'I’ve drafted a structured website update request. Connect workflow automation later to send this directly into your maintenance queue.';
+  'Thanks! In the live version I’ll search this brand’s real catalog to recommend products, compare options, and answer payment or shipping questions.';
 
 export default function AssistantChatPanel() {
   const [messages, setMessages] = useState(SEED_MESSAGES);
@@ -71,7 +71,7 @@ export default function AssistantChatPanel() {
         <div className="min-w-0">
           <p className="text-[13px] font-semibold text-[#F5F7FA]">Sensify Assistant</p>
           <p className="truncate text-[11px] text-[rgba(245,247,250,0.55)]">
-            Website updates, catalog changes, campaign pages
+            Product recommendations, comparisons, shopping help
           </p>
         </div>
       </div>
@@ -113,7 +113,7 @@ export default function AssistantChatPanel() {
           type="text"
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
-          placeholder="Ask Sensify Assistant..."
+          placeholder="Ask about products, fit, materials, payment, or shipping..."
           autoComplete="off"
           className="min-w-0 flex-1 rounded-full border border-[rgba(245,247,250,0.14)] bg-[rgba(3,6,9,0.4)] px-4 py-2.5 text-[12.5px] text-[#F5F7FA] placeholder:text-[rgba(245,247,250,0.4)]"
         />

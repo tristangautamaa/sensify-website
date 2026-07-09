@@ -43,6 +43,7 @@ export default function SensifySystemSection() {
   return (
     <section
       id="system"
+      data-header-theme="light"
       className="relative flex min-h-screen flex-col justify-center bg-[#F5F7FA] px-6 py-20 sm:px-10 sm:py-28"
     >
       <div className="mx-auto w-full max-w-[1280px]">
@@ -68,7 +69,8 @@ export default function SensifySystemSection() {
             </p>
             <a
               href="#infrastructure"
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-[rgba(12,68,124,0.2)] bg-transparent px-5 py-2.5 text-[0.8rem] font-semibold text-[#0C447C] transition-colors hover:border-[#0C447C] hover:bg-[rgba(12,68,124,0.08)]"
+              className="mt-6 inline-flex h-12 items-center gap-2 rounded-full border border-[rgba(12,68,124,0.28)] bg-transparent px-7 text-[0.82rem] font-semibold shadow-none transition-all duration-200 hover:-translate-y-[1px] hover:border-[rgba(12,68,124,0.42)] hover:bg-[rgba(12,68,124,0.07)]"
+              style={{ color: '#0C447C' }}
             >
               View the operating system
               <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden="true" />

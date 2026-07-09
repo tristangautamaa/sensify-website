@@ -3,7 +3,7 @@ import SensifySitePreview from './SensifySitePreview.jsx';
 
 /**
  * Liquid-glass dashboard frame holding the assistant chat demo and the
- * fake Sensify console preview side by side (stacked on small screens).
+ * fake customer-guide console side by side (stacked on small screens).
  */
 export default function AssistantDashboardMock() {
   return (
@@ -14,7 +14,7 @@ export default function AssistantDashboardMock() {
         <span className="h-2.5 w-2.5 rounded-full bg-[rgba(245,247,250,0.25)]" />
         <span className="h-2.5 w-2.5 rounded-full bg-[rgba(55,138,221,0.7)]" />
         <span className="ml-3 text-[0.62rem] font-medium tracking-[0.24em] text-[rgba(245,247,250,0.45)]">
-          SENSIFY ASSISTANT — OPERATIONS PREVIEW
+          SENSIFY ASSISTANT — SHOPPING PREVIEW
         </span>
       </div>
 

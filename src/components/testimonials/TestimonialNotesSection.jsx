@@ -43,6 +43,7 @@ export default function TestimonialNotesSection() {
   return (
     <section
       id="testimonials"
+      data-header-theme="dark"
       className="relative overflow-hidden bg-[#030609] px-6 py-24 text-[#F5F7FA] md:px-12 md:py-32"
     >
       {/* Ambient glow */}

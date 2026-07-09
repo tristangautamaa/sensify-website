@@ -1,5 +1,5 @@
 import FadeUp from '../ui/FadeUp.jsx';
-import PaymentRailStack from './PaymentRailStack.jsx';
+import VerticalPaymentDrop from './VerticalPaymentDrop.jsx';
 
 const PAYMENT_PATHS = [
   'QRIS',
@@ -12,14 +12,19 @@ const PAYMENT_PATHS = [
 
 /**
  * Strategic-position section: Sensify is not anti-marketplace — it adds an
- * owned channel beside the marketplace. Editorial text left, 3D payment
- * carousel right.
+ * owned channel beside the marketplace. Editorial text left, vertical
+ * payment card-drop right.
  */
 export default function DependencyReductionSection() {
   return (
     <section
       id="dependency"
-      className="relative overflow-hidden bg-[#030609] py-28 text-[#F5F7FA] md:py-36"
+      data-header-theme="dark"
+      className="relative overflow-hidden bg-[#030609] text-[#F5F7FA]"
+      style={{
+        paddingTop: 'clamp(120px, 12vw, 180px)',
+        paddingBottom: 'clamp(120px, 12vw, 180px)',
+      }}
     >
       {/* Ambient glows tying the section to the hero palette */}
       <div
@@ -31,30 +36,36 @@ export default function DependencyReductionSection() {
         }}
       />
 
-      <div className="relative mx-auto grid w-full max-w-[1280px] grid-cols-1 items-center gap-16 px-6 md:px-12 lg:grid-cols-2 lg:gap-10">
-        <div>
+      <div
+        className="relative mx-auto grid w-full max-w-[1280px] grid-cols-1 items-center px-6 md:px-12 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,520px)]"
+        style={{ gap: 'clamp(48px, 8vw, 110px)' }}
+      >
+        <div className="flex flex-col" style={{ gap: 'clamp(24px, 2.4vw, 32px)' }}>
           <FadeUp>
             <p className="mb-6 text-[0.68rem] font-semibold tracking-[0.34em] text-[#378ADD]">
               DEPENDENCY REDUCTION
             </p>
-            <h2 className="font-display text-4xl leading-[1.1] md:text-6xl">
+            <h2
+              className="font-display text-4xl leading-[1.1] md:text-6xl"
+              style={{ marginBottom: 'clamp(20px, 2.4vw, 34px)' }}
+            >
               We do not replace marketplaces. <em>We reduce dependency.</em>
             </h2>
           </FadeUp>
 
           <FadeUp delay={0.15}>
-            <p className="mt-7 max-w-[520px] text-[15px] leading-[1.75] text-[rgba(245,247,250,0.68)]">
+            <p className="max-w-[620px] text-[15px] leading-[1.72] text-[rgba(245,247,250,0.68)]">
               Marketplaces can keep bringing reach. Sensify gives your brand a second channel that
               you own — with campaign pages, customer journeys, checkout options, and maintenance
               handled outside the platform.
             </p>
-            <p className="mt-5 max-w-[520px] text-[15px] leading-[1.75] text-[rgba(245,247,250,0.68)]">
+            <p className="mt-3 max-w-[620px] text-[15px] leading-[1.72] text-[rgba(245,247,250,0.68)]">
               Your owned website can still support familiar payment paths:
             </p>
           </FadeUp>
 
           <FadeUp delay={0.25}>
-            <ul className="mt-5 flex max-w-[520px] flex-wrap gap-2">
+            <ul className="mb-6 flex max-w-[620px] flex-wrap gap-2.5" style={{ marginTop: '18px' }}>
               {PAYMENT_PATHS.map((path) => (
                 <li
                   key={path}
@@ -65,14 +76,21 @@ export default function DependencyReductionSection() {
               ))}
             </ul>
 
-            <p className="font-display mt-10 text-xl text-[rgba(245,247,250,0.85)] italic md:text-2xl">
+            <p
+              className="font-display text-[rgba(245,247,250,0.85)] italic"
+              style={{
+                marginTop: '24px',
+                fontSize: 'clamp(1.4rem, 2.4vw, 2rem)',
+                lineHeight: 1.15,
+              }}
+            >
               “Keep the reach. <span className="text-[#D85A30]">Own the relationship.</span>”
             </p>
           </FadeUp>
         </div>
 
         <FadeUp delay={0.2} className="min-w-0">
-          <PaymentRailStack />
+          <VerticalPaymentDrop />
         </FadeUp>
       </div>
     </section>

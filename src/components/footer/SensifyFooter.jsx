@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import BookingModal from '../booking/BookingModal.jsx';
 import './SensifyFooter.css';
 
 if (typeof window !== 'undefined') {
@@ -78,6 +79,7 @@ function MagneticButton({ as: Tag = 'a', className = '', strength = 0.32, childr
 
 export default function SensifyFooter() {
   const footerRef = useRef(null);
+  const [bookingOpen, setBookingOpen] = useState(false);
 
   useEffect(() => {
     const footer = footerRef.current;
@@ -141,7 +143,7 @@ export default function SensifyFooter() {
   };
 
   return (
-    <footer ref={footerRef} id="contact" className="sf-footer">
+    <footer ref={footerRef} id="contact" data-header-theme="dark" className="sf-footer">
       <div className="sf-curtain">
         {/* Backdrop: grid + aurora */}
         <div className="sf-grid" aria-hidden="true" />
@@ -179,24 +181,15 @@ export default function SensifyFooter() {
 
           <div className="sf-actions sf-stagger">
             <MagneticButton
-              as="a"
-              href="mailto:hello@sensify.example?subject=Free%20consultation"
+              as="button"
+              type="button"
+              onClick={() => setBookingOpen(true)}
               className="sf-pill-primary"
             >
               Book a free consultation
               <span className="sf-pill-arrow" aria-hidden="true">
                 →
               </span>
-            </MagneticButton>
-            <MagneticButton
-              as="a"
-              href="mailto:hello@sensify.example?subject=Website%20transition%20plan"
-              className="sf-pill-outline"
-            >
-              Plan my website transition
-            </MagneticButton>
-            <MagneticButton as="a" href="#assistant" className="sf-pill-ghost">
-              Preview AI Assistant
             </MagneticButton>
           </div>
 
@@ -228,6 +221,8 @@ export default function SensifyFooter() {
           ↑
         </button>
       </div>
+
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     </footer>
   );
 }

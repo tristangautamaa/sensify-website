@@ -34,6 +34,7 @@ export default function ProblemCardsSection() {
   return (
     <section
       id="problem"
+      data-header-theme="dark"
       className="flex min-h-screen flex-col items-center justify-center bg-[#0A0A0B] px-6 py-24 md:px-12"
     >
       <FadeUp className="mb-14 flex max-w-[760px] flex-col items-center text-center md:mb-20">

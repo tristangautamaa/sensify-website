@@ -50,7 +50,11 @@ function InfraCard({ children, negative = false, delay = 0 }) {
  */
 export default function InfrastructureSection() {
   return (
-    <section id="infrastructure" className="bg-[#F5F7FA] px-6 py-24 md:px-12 md:py-32">
+    <section
+      id="infrastructure"
+      data-header-theme="light"
+      className="bg-[#F5F7FA] px-6 py-24 md:px-12 md:py-32"
+    >
       <div className="mx-auto w-full max-w-[1280px]">
         <FadeUp className="mx-auto mb-16 flex max-w-[820px] flex-col items-center text-center md:mb-20">
           <span className="mb-6 rounded-full border border-[rgba(12,68,124,0.2)] bg-white px-4 py-1.5 text-[0.64rem] font-semibold tracking-[0.3em] text-[#0C447C]">

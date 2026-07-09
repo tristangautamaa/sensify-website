@@ -23,11 +23,42 @@ export default function StaggeredMenu({
   onMenuClose
 }) {
   const [open, setOpen] = useState(false);
+  const [headerTheme, setHeaderTheme] = useState('dark');
   const panelRef = useRef(null);
   const preLayersRef = useRef(null);
   const tlRef = useRef(null);
 
   const offscreen = position === 'left' ? -100 : 100;
+
+  // Header adapts to the section beneath it: sample the element under the
+  // header center and read the closest [data-header-theme] ancestor, so the
+  // logo/menu flip dark over light sections and light over dark ones.
+  useEffect(() => {
+    let raf = 0;
+
+    const updateTheme = () => {
+      raf = 0;
+      const el = document.elementFromPoint(window.innerWidth / 2, 56);
+      const section = el?.closest?.('[data-header-theme]');
+      // Keep the previous theme when nothing themed is under the sample
+      // point (e.g. mid-gradient transition bands) — never snap to dark.
+      setHeaderTheme((prev) => section?.dataset?.headerTheme || prev);
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(updateTheme);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    updateTheme();
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -104,6 +135,7 @@ export default function StaggeredMenu({
       className={`staggered-menu-wrapper ${className}`.trim()}
       data-position={position}
       data-open={open || undefined}
+      data-theme={headerTheme}
       style={{
         '--sm-accent': accentColor,
         '--sm-btn': menuButtonColor,

@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { GripVertical } from 'lucide-react';
 
-import MarketplaceMockup from './MarketplaceMockup.jsx';
-import OwnedWebsiteMockup from './OwnedWebsiteMockup.jsx';
+import MarketplaceProductPage from './MarketplaceProductPage.jsx';
+import OwnedBrandWebsite from './OwnedBrandWebsite.jsx';
 
 /**
  * Draggable before/after comparison.
  *
- * Base layer: owned website experience (right/after). Overlay: marketplace
- * page (left/before), clipped to the handle position with `clip-path`.
- * Dragging anywhere on the frame moves the divider; the handle also supports
- * keyboard arrows. Position is clamped 5-95%.
+ * Base layer: owned brand website (right/after). Overlay: marketplace
+ * product page (left/before), clipped to the handle position with
+ * `clip-path`. Dragging anywhere on the frame moves the divider; the handle
+ * also supports keyboard arrows. Position is clamped 5-95%.
  *
  * Lightweight DOM/CSS only — no canvas, no animation library.
  */
@@ -62,10 +62,10 @@ export default function ImageComparisonSlider() {
   }, [endDrag]);
 
   const onHandleKeyDown = (event) => {
-    if (event.key === 'ArrowLeft') {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
       event.preventDefault();
       setPosition((p) => clamp(p - 5));
-    } else if (event.key === 'ArrowRight') {
+    } else if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
       event.preventDefault();
       setPosition((p) => clamp(p + 5));
     }
@@ -79,18 +79,18 @@ export default function ImageComparisonSlider() {
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
     >
-      {/* Base layer: owned brand experience (after) */}
+      {/* Base layer: owned brand website (after) */}
       <div className="absolute inset-0" aria-hidden="true">
-        <OwnedWebsiteMockup />
+        <OwnedBrandWebsite />
       </div>
 
-      {/* Overlay: marketplace listing (before), clipped left of the divider */}
+      {/* Overlay: marketplace product page (before), clipped left of the divider */}
       <div
         className="absolute inset-0"
         aria-hidden="true"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <MarketplaceMockup />
+        <MarketplaceProductPage />
       </div>
 
       {/* Layer labels */}
@@ -104,7 +104,7 @@ export default function ImageComparisonSlider() {
         }}
       >
         <p className="font-mono text-[0.58rem] font-medium tracking-[0.26em] text-[#378ADD]">
-          MARKETPLACE LISTING
+          BEFORE / MARKETPLACE LISTING
         </p>
         <p className="mt-1 max-w-[240px] text-[12px] leading-[1.55] text-[rgba(245,247,250,0.72)]">
           Standard structure. Limited story. Platform-owned journey.
@@ -121,10 +121,10 @@ export default function ImageComparisonSlider() {
         }}
       >
         <p className="font-mono text-[0.58rem] font-medium tracking-[0.26em] text-[#D85A30]">
-          OWNED BRAND EXPERIENCE
+          AFTER / OWNED BRAND EXPERIENCE
         </p>
         <p className="mt-1 ml-auto max-w-[250px] text-[12px] leading-[1.55] text-[rgba(245,247,250,0.72)]">
-          Your catalog, campaign, story, and customer journey in one official website.
+          Your story, catalog, checkout path, and customer journey in one official website.
         </p>
       </div>
 
@@ -140,7 +140,7 @@ export default function ImageComparisonSlider() {
       <div
         role="slider"
         tabIndex={0}
-        aria-label="Compare marketplace page and owned website experience"
+        aria-label="Compare marketplace product page and owned brand website"
         aria-valuemin={MIN}
         aria-valuemax={MAX}
         aria-valuenow={Math.round(position)}

@@ -81,6 +81,15 @@
   transition: color 0.35s ease;
 }
 
+/* Theme follows the section under the header (data-theme is set from the
+   closest [data-header-theme] section). Declared before the [data-open]
+   rules so the open-menu colors win at equal specificity. */
+.staggered-menu-wrapper[data-theme='light'] .sm-logo-word,
+.staggered-menu-wrapper[data-theme='light'] .sm-logo-text,
+.staggered-menu-wrapper[data-theme='light'] .sm-toggle {
+  color: #030609;
+}
+
 .staggered-menu-wrapper[data-open] .sm-toggle {
   color: var(--sm-btn-open, #030609);
 }

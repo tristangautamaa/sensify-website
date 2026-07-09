@@ -16,29 +16,30 @@ import { useEffect, useRef, useState } from 'react';
  * branding, no chips.
  */
 const PAYMENT_CARDS = [
-  { id: 'qris', name: 'QRIS', label: 'Scan-to-pay checkout', tag: 'OWNED CHECKOUT', accent: '#0C447C', strip: '#378ADD' },
-  { id: 'virtual-account', name: 'Virtual Account', label: 'Bank transfer rails', tag: 'PAYMENT PATH', accent: '#378ADD', strip: '#378ADD' },
-  { id: 'e-wallet', name: 'E-Wallet', label: 'Mobile-first payment flow', tag: 'FAST CHECKOUT', accent: '#D85A30', strip: '#D85A30' },
-  { id: 'card-payment', name: 'Card Payment', label: 'Credit / debit ready', tag: 'DIRECT PAYMENT', accent: '#F5F7FA', strip: '#F5F7FA' },
-  { id: 'assisted-checkout', name: 'Assisted Checkout', label: 'WhatsApp order support', tag: 'HUMAN FALLBACK', accent: '#07111C', strip: '#D85A30' },
+  { id: 'qris', name: 'QRIS', desc: 'Customer scans and pays through familiar Indonesian checkout behavior.', tag: 'SCAN PAYMENT', strip: '#378ADD' },
+  { id: 'virtual-account', name: 'Virtual Account', desc: 'Give customers a structured transfer path beyond marketplace checkout.', tag: 'BANK TRANSFER', strip: '#378ADD' },
+  { id: 'e-wallet', name: 'E-wallet', desc: 'Keep mobile-first customers moving with familiar wallet payment flows.', tag: 'MOBILE CHECKOUT', strip: '#D85A30' },
+  { id: 'card-payment', name: 'Card Payment', desc: 'Support credit and debit card payment paths when the brand is ready.', tag: 'DIRECT PAYMENT', strip: '#F5F7FA' },
+  { id: 'assisted-checkout', name: 'Assisted Checkout', desc: 'Let customers ask, confirm, and complete orders with human assistance.', tag: 'WHATSAPP SUPPORT', strip: '#D85A30' },
 ];
 
 const COUNT = PAYMENT_CARDS.length;
 const CYCLE_MS = 2800;
 
 /* Slot layout by distance from the active card: 0 = front center,
-   1-2 = queue receding down-right, 3-4 = served cards drifting up-left. */
+   1-2 = queue receding down-right, 3-4 = served cards drifting up-left.
+   Back cards stay nearly sharp (blur <= 0.2px) so the stack never looks muddy. */
 const SLOTS = [
   { x: 0, y: 0, z: 80, scale: 1, rotate: -1, opacity: 1, blur: 0, zIndex: 5 },
-  { x: 32, y: 42, z: 40, scale: 0.94, rotate: 3, opacity: 0.72, blur: 0.6, zIndex: 4 },
-  { x: 64, y: 84, z: 10, scale: 0.88, rotate: 6, opacity: 0.46, blur: 1.2, zIndex: 3 },
-  { x: -32, y: -42, z: 20, scale: 0.91, rotate: -5, opacity: 0.58, blur: 0.9, zIndex: 2 },
-  { x: -64, y: -84, z: 0, scale: 0.84, rotate: -8, opacity: 0.34, blur: 1.6, zIndex: 1 },
+  { x: 34, y: 46, z: 40, scale: 0.96, rotate: 3, opacity: 0.72, blur: 0, zIndex: 4 },
+  { x: 68, y: 92, z: 10, scale: 0.9, rotate: 6, opacity: 0.44, blur: 0.2, zIndex: 3 },
+  { x: -34, y: -46, z: 20, scale: 0.93, rotate: -5, opacity: 0.6, blur: 0, zIndex: 2 },
+  { x: -68, y: -92, z: 0, scale: 0.88, rotate: -8, opacity: 0.36, blur: 0.2, zIndex: 1 },
 ];
 
-const CARD_BACKGROUND = `linear-gradient(135deg, rgba(245,247,250,.10), rgba(245,247,250,.035)),
-  radial-gradient(circle at 12% 18%, rgba(55,138,221,.28), transparent 34%),
-  radial-gradient(circle at 86% 72%, rgba(216,90,48,.20), transparent 30%),
+const CARD_BACKGROUND = `radial-gradient(circle at 12% 18%, rgba(55,138,221,.24), transparent 34%),
+  radial-gradient(circle at 86% 72%, rgba(216,90,48,.18), transparent 30%),
+  linear-gradient(135deg, rgba(245,247,250,.105), rgba(245,247,250,.035)),
   #07111C`;
 
 export default function PaymentRailStack() {
@@ -161,7 +162,7 @@ export default function PaymentRailStack() {
             return (
               <div
                 key={card.id}
-                className="absolute top-1/2 left-1/2 h-[clamp(160px,20vw,230px)] w-[clamp(260px,34vw,440px)]"
+                className="absolute top-1/2 left-1/2 w-[clamp(280px,34vw,460px)]"
                 style={{
                   zIndex: slot.zIndex,
                   opacity: reduced ? Math.max(slot.opacity, 0.3) : slot.opacity,
@@ -173,48 +174,34 @@ export default function PaymentRailStack() {
                   willChange: 'transform, opacity',
                 }}
               >
+                {/* Flex column keeps text clear of every decorative element:
+                    tag row top, title block middle, rail line bottom. */}
                 <div
-                  className="relative flex h-full w-full flex-col justify-between overflow-hidden p-6"
+                  className="relative flex w-full flex-col justify-between gap-7 overflow-hidden"
                   style={{
+                    minHeight: 'clamp(180px, 21vw, 260px)',
                     borderRadius: '32px',
+                    padding: 'clamp(22px, 2.4vw, 34px)',
                     background: CARD_BACKGROUND,
                     color: '#F5F7FA',
                     border: '1px solid rgba(245,247,250,.14)',
-                    boxShadow: '0 24px 80px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.12)',
+                    boxShadow: '0 30px 90px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.12)',
                   }}
                 >
-                  {/* Accent strip + glow keyed to the payment method */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute top-6 bottom-6 left-0 w-[3px] rounded-r-full"
-                    style={{
-                      background: card.strip,
-                      boxShadow: `0 0 22px ${card.strip}`,
-                      opacity: 0.85,
-                    }}
-                  />
-
-                  {/* Abstract concentric arcs — no bank branding */}
+                  {/* Abstract concentric arcs — background only, low opacity,
+                      kept in the top-right corner away from the text column. */}
                   <div className="pointer-events-none absolute inset-0" aria-hidden="true">
                     <div
-                      className="absolute -top-12 -right-12 h-36 w-36 rounded-full border"
-                      style={{ borderColor: 'rgba(245,247,250,0.4)', opacity: 0.22 }}
+                      className="absolute -top-14 -right-14 h-36 w-36 rounded-full border"
+                      style={{ borderColor: 'rgba(245,247,250,0.4)', opacity: 0.16 }}
                     />
                     <div
-                      className="absolute -top-6 -right-20 h-48 w-48 rounded-full border"
-                      style={{ borderColor: 'rgba(245,247,250,0.4)', opacity: 0.12 }}
-                    />
-                    <div
-                      className="absolute bottom-8 left-6 h-px w-1/2"
-                      style={{ background: 'rgba(245,247,250,0.35)' }}
-                    />
-                    <div
-                      className="absolute bottom-[30px] left-[calc(50%+16px)] h-[5px] w-[5px] rounded-full"
-                      style={{ background: card.strip }}
+                      className="absolute -top-8 -right-24 h-48 w-48 rounded-full border"
+                      style={{ borderColor: 'rgba(245,247,250,0.4)', opacity: 0.09 }}
                     />
                   </div>
 
-                  <div className="relative flex items-start justify-between gap-3 pl-3">
+                  <div className="relative flex items-start justify-between gap-3">
                     <span className="font-mono rounded-full border border-[rgba(245,247,250,0.22)] px-2.5 py-1 text-[0.55rem] font-medium tracking-[0.18em] text-[rgba(245,247,250,0.72)]">
                       {card.tag}
                     </span>
@@ -223,10 +210,33 @@ export default function PaymentRailStack() {
                     </span>
                   </div>
 
-                  <div className="relative pl-3">
-                    <p className="font-display text-xl md:text-2xl">{card.name}</p>
-                    <p className="mt-1 text-[0.74rem] text-[rgba(245,247,250,0.62)]">{card.label}</p>
+                  <div className="relative">
+                    <p
+                      className="font-display m-0"
+                      style={{
+                        fontSize: 'clamp(1.8rem, 3vw, 3rem)',
+                        lineHeight: 0.95,
+                        letterSpacing: '-0.055em',
+                      }}
+                    >
+                      {card.name}
+                    </p>
+                    <p
+                      className="mt-2.5"
+                      style={{ fontSize: '0.95rem', lineHeight: 1.45, color: 'rgba(245,247,250,.68)' }}
+                    >
+                      {card.desc}
+                    </p>
                   </div>
+
+                  {/* Decorative rail line — its own bottom row, never under text */}
+                  <div
+                    aria-hidden="true"
+                    className="relative h-px w-full"
+                    style={{
+                      background: `linear-gradient(90deg, rgba(245,247,250,.12), ${card.strip}, rgba(245,247,250,.04))`,
+                    }}
+                  />
                 </div>
               </div>
             );

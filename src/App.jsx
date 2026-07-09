@@ -7,9 +7,10 @@ import ProblemCardsSection from './components/problem/ProblemCardsSection.jsx';
 import AIAssistantCtaSection from './components/assistant/AIAssistantCtaSection.jsx';
 import DependencyReductionSection from './components/dependency/DependencyReductionSection.jsx';
 import SensifySystemSection from './components/system/SensifySystemSection.jsx';
-import OwnedExperienceComparisonSection from './components/ownership/OwnedExperienceComparisonSection.jsx';
+import OwnedExperienceVideoSection from './components/ownership/OwnedExperienceVideoSection.jsx';
 import InfrastructureSection from './components/infrastructure/InfrastructureSection.jsx';
 import TestimonialNotesSection from './components/testimonials/TestimonialNotesSection.jsx';
+import ClientLogoSection from './components/clients/ClientLogoSection.jsx';
 import SmartFAQSection from './components/faq/SmartFAQSection.jsx';
 import SensifyFooter from './components/footer/SensifyFooter.jsx';
 
@@ -65,9 +66,10 @@ export default function App() {
       <AIAssistantCtaSection />
       <DependencyReductionSection />
       <SensifySystemSection />
-      <OwnedExperienceComparisonSection />
+      <OwnedExperienceVideoSection />
       <InfrastructureSection />
       <TestimonialNotesSection />
+      <ClientLogoSection />
       <SmartFAQSection />
       <SensifyFooter />
     </>

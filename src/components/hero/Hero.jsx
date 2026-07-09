@@ -30,7 +30,7 @@ export default function Hero() {
   const pixelTrailEnabled = usePixelTrailEnabled();
 
   return (
-    <section className="hero" id="home">
+    <section className="hero" id="home" data-header-theme="dark">
       <ShaderHeroBackground />
 
       {pixelTrailEnabled && (

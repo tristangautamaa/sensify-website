@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { RotateCcw } from 'lucide-react';
 
 /**
  * SmartFAQ — interactive FAQ widget.
@@ -328,18 +327,13 @@ export default function SmartFAQ({
     return () => io.disconnect();
   }, []);
 
+  // The input stays editable and the Ask button never changes mode:
+  // asking again simply re-runs the match on the current text.
   const search = () => {
     if (!query.trim()) return;
     const result = findBestMatch(query, faqEntries);
     setMatch(result || 'none');
     setSubmitted(true);
-  };
-
-  const reset = () => {
-    setSubmitted(false);
-    setMatch(null);
-    setQuery('');
-    setTyping(false);
   };
 
   const askWith = (text) => {
@@ -385,14 +379,13 @@ export default function SmartFAQ({
         <input
           type="text"
           value={query}
-          disabled={submitted}
           aria-label="Ask Sensify a question"
           placeholder={placeholder}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') search();
           }}
-          className="h-12 min-w-0 flex-1 rounded-full border px-5 text-[14px] outline-none placeholder:text-[rgba(245,247,250,0.35)] focus-visible:border-[#378ADD] disabled:opacity-50"
+          className="h-12 min-w-0 flex-1 rounded-full border px-5 text-[14px] outline-none placeholder:text-[rgba(245,247,250,0.35)] focus-visible:border-[#378ADD]"
           style={{
             background: colors.inputBackground,
             borderColor: colors.borderColor,
@@ -401,12 +394,12 @@ export default function SmartFAQ({
         />
         <button
           type="button"
-          onClick={submitted ? reset : search}
-          aria-label={submitted ? 'Ask another question' : 'Search the FAQ'}
-          className="flex h-12 shrink-0 items-center justify-center rounded-full px-6 text-[0.82rem] font-semibold transition-transform duration-300 hover:-translate-y-[1px] active:scale-[0.98]"
+          onClick={search}
+          aria-label="Search the FAQ"
+          className="flex h-12 min-w-[92px] shrink-0 items-center justify-center rounded-full px-6 text-[0.82rem] font-semibold transition-transform duration-300 hover:-translate-y-[1px] active:scale-[0.98]"
           style={{ background: colors.accentColor, color: colors.ctaTextColor }}
         >
-          {submitted ? <RotateCcw size={17} strokeWidth={2.4} aria-hidden="true" /> : 'Ask'}
+          Ask
         </button>
       </div>
 
@@ -428,10 +421,7 @@ export default function SmartFAQ({
                 <button
                   key={chip}
                   type="button"
-                  onClick={() => {
-                    reset();
-                    askWith(chip);
-                  }}
+                  onClick={() => askWith(chip)}
                   className="font-mono rounded-full border px-4 py-1.5 text-[0.62rem] tracking-[0.14em] uppercase transition-colors hover:border-[#378ADD] hover:text-[#378ADD]"
                   style={{ borderColor: colors.borderColor, color: 'rgba(245,247,250,0.65)' }}
                 >
@@ -448,16 +438,22 @@ export default function SmartFAQ({
               <h4 className="font-display text-lg md:text-xl" style={{ color: colors.topicTitleColor }}>
                 {match.entry.title}
               </h4>
-              {showConfidence && (
+              {showConfidence && confidence && (
+                // Confidence shown as a small colored dot only — no text label.
                 <span
-                  className="font-mono rounded-full border px-2.5 py-0.5 text-[0.52rem] tracking-[0.16em] uppercase"
+                  role="img"
+                  aria-label={`${confidence} confidence match`}
+                  title={`${confidence} confidence`}
+                  className="ml-2 inline-block h-2 w-2 rounded-full"
                   style={{
-                    borderColor: `${colors.secondaryAccent}66`,
-                    color: colors.secondaryAccent,
+                    background:
+                      confidence === 'High'
+                        ? '#22C55E'
+                        : confidence === 'Medium'
+                          ? '#EAB308'
+                          : '#EF4444',
                   }}
-                >
-                  {confidence} match
-                </span>
+                />
               )}
             </div>
             <p className="mt-4 max-w-[62ch] text-[14.5px] leading-[1.75] text-[rgba(245,247,250,0.78)]">
