@@ -19,14 +19,16 @@
   display: block;
 }
 
-/* Placeholder gradient — visible until the video paints its first frame. */
+/* Placeholder gradient — visible until the video paints its first frame.
+   Glows are centered inside and fade before the edges, so a still-loading
+   fullscreen video never shows a color seam against adjacent sections. */
 .optimized-video__placeholder {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(90% 70% at 78% 18%, rgba(55, 138, 221, 0.2), transparent 55%),
-    radial-gradient(70% 60% at 16% 88%, rgba(216, 90, 48, 0.14), transparent 52%),
-    linear-gradient(160deg, #07111c 0%, #030609 62%);
+    radial-gradient(50% 40% at 70% 34%, rgba(55, 138, 221, 0.16), transparent 68%),
+    radial-gradient(45% 35% at 24% 70%, rgba(216, 90, 48, 0.1), transparent 68%),
+    #030609;
 }
 
 /* ---- loading state ---- */
@@ -68,14 +70,6 @@
   to {
     left: 100%;
   }
-}
-
-.optimized-video__loading-text {
-  font-family: var(--font-mono, 'Geist Mono', monospace);
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(245, 247, 250, 0.55);
 }
 
 /* ---- error state ---- */

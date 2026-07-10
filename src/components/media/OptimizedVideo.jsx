@@ -145,10 +145,10 @@ export default function OptimizedVideo({
         onError={() => setHasError(true)}
       />
 
+      {/* Loading state stays unobtrusive: a thin scan bar only, no text. */}
       {showLoading && (
         <div className="optimized-video__loading" aria-hidden="true">
           <span className="optimized-video__loading-bar" />
-          <span className="optimized-video__loading-text">Loading preview</span>
         </div>
       )}
 

@@ -1,168 +1,60 @@
-/* Owned Experience — cinematic video section. Dark, near full-screen, with
-   the video frame as the dominant element below the copy. */
+/* Owned Experience — scroll-led fullscreen video section.
+   Tall scroll track + sticky 100dvh stage; the video frame's inset/radius
+   are animated from JS (motion values), this file owns the static shell.
+   No overlay copy, chips, or labels — the video is the only visual. */
 
-.owned-video-section {
+.scroll-video-section {
   position: relative;
-  overflow: hidden;
-  background: #030609;
+  min-height: 200vh;
   color: #f5f7fa;
-  min-height: 100vh;
-  padding: clamp(96px, 10vw, 160px) 24px;
-  display: flex;
-  align-items: center;
 }
 
-/* Ambient blue/orange atmosphere behind the frame */
-.owned-video-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 75% 25%, rgba(55, 138, 221, 0.16), transparent 34%),
-    radial-gradient(circle at 20% 85%, rgba(216, 90, 48, 0.12), transparent 30%),
-    radial-gradient(120% 90% at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
-}
-
-.owned-video-inner {
-  position: relative;
-  width: 100%;
-  max-width: 1320px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(40px, 5vw, 64px);
-}
-
-/* ---- copy ---- */
-
-.owned-video-copy {
-  max-width: 760px;
-}
-
-.owned-video-eyebrow {
-  margin-bottom: 24px;
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.34em;
-  color: #378add;
-}
-
-.owned-video-heading {
-  font-size: clamp(2.25rem, 4.6vw, 3.75rem);
-  line-height: 1.06;
-}
-
-.owned-video-paragraph {
-  margin-top: 20px;
-  max-width: 600px;
-  font-size: 15px;
-  line-height: 1.7;
-  color: rgba(245, 247, 250, 0.68);
-}
-
-/* ---- video stage ---- */
-
-.owned-video-stage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.owned-video-shell {
-  position: relative;
-  width: min(92vw, 1320px);
-  max-height: 78vh;
-  aspect-ratio: 16 / 9;
-  border-radius: clamp(24px, 3vw, 42px);
-  overflow: hidden;
-  background: rgba(245, 247, 250, 0.035);
-  border: 1px solid rgba(245, 247, 250, 0.14);
-  box-shadow:
-    0 40px 160px rgba(0, 0, 0, 0.58),
-    0 0 80px rgba(55, 138, 221, 0.1);
-}
-
-.owned-video-shell .optimized-video {
-  position: absolute;
-  inset: 0;
-}
-
-/* Small in-frame status bar */
-.owned-video-topbar {
-  position: absolute;
+/* Higher specificity than the shared dark-flow rules so nothing can ever
+   downgrade the sticky positioning of the stage. */
+.scroll-video-section > .scroll-video-sticky {
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: clamp(14px, 1.6vw, 22px) clamp(16px, 2vw, 28px);
-  pointer-events: none;
-  background: linear-gradient(to bottom, rgba(3, 6, 9, 0.5), transparent);
+  height: 100dvh;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.owned-video-chip {
-  font-family: var(--font-mono, 'Geist Mono', monospace);
-  font-size: 0.58rem;
-  letter-spacing: 0.24em;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(245, 247, 250, 0.18);
-  background: rgba(3, 6, 9, 0.45);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: rgba(245, 247, 250, 0.82);
-  white-space: nowrap;
+/* ---- expanding video frame ---- */
+
+.scroll-video-frame {
+  position: absolute;
+  overflow: hidden;
+  z-index: 2;
+  background: #030609;
+  transform: translateZ(0);
 }
 
-.owned-video-chip--status {
-  color: rgba(245, 247, 250, 0.55);
-  border-color: rgba(245, 247, 250, 0.1);
+.scroll-video-frame .optimized-video {
+  position: absolute;
+  inset: 0;
 }
 
-/* ---- captions below the frame ---- */
+/* ---- reduced motion: static full-viewport video, no sticky expansion ---- */
 
-.owned-video-label {
-  margin-top: 26px;
-  font-size: 0.62rem;
-  letter-spacing: 0.26em;
-  text-align: center;
-  color: rgba(245, 247, 250, 0.6);
+.scroll-video-section--static {
+  min-height: 0;
 }
 
-.owned-video-label span {
-  color: #d85a30;
+.scroll-video-frame--static {
+  position: relative;
+  height: 100dvh;
+  border-radius: 0;
 }
 
-.owned-video-note {
-  margin-top: 10px;
-  font-size: 0.72rem;
-  line-height: 1.5;
-  text-align: center;
-  color: rgba(245, 247, 250, 0.38);
+.scroll-video-frame--static .optimized-video {
+  position: absolute;
+  inset: 0;
 }
 
 /* ---- mobile ---- */
 
 @media (max-width: 767px) {
-  .owned-video-section {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .owned-video-shell {
-    width: 100%;
-    border-radius: 20px;
-  }
-
-  .owned-video-topbar {
-    padding: 12px 14px;
-  }
-
-  .owned-video-chip {
-    font-size: 0.52rem;
-    letter-spacing: 0.18em;
-    padding: 5px 9px;
+  .scroll-video-section {
+    min-height: 180vh;
   }
 }

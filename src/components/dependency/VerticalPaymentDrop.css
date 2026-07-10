@@ -15,27 +15,43 @@
   height: clamp(460px, 56vh, 640px);
   width: 100%;
   max-width: 520px;
-  perspective: 1400px;
   background: transparent;
   border: 0;
+  outline: none;
   box-shadow: none;
-  isolation: isolate;
-  /* Soft edge fade instead of overflow clipping — cards, glows, and card
-     shadows dissolve into the section background with no visible rectangle.
-     The two gradients are intersected so all four edges fade. */
-  mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
-  mask-composite: intersect;
-  -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 14%, #000 84%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 9%, #000 91%, transparent 100%);
-  -webkit-mask-composite: source-in;
+  overflow: visible;
 }
 
+/* Enlarged masked stage. The mask used to sit on the wrapper itself, which
+   hard-clipped the blurred glows and card shadows exactly at the wrapper's
+   border box — that clip WAS the visible rectangle. The stage extends past
+   the wrapper on every side so the fade-to-transparent happens outside the
+   visual card area and everything dissolves into the section background. */
+.vpd-scene-mask {
+  position: absolute;
+  inset: -110px -90px;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+  perspective: 1400px;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  mask-composite: intersect;
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+}
+
+/* Restores the original card coordinate space (cancels the stage inset). */
 .vpd-scene {
   position: absolute;
-  inset: 0;
+  inset: 110px 90px;
   transform-style: preserve-3d;
 }
 
@@ -423,6 +439,16 @@
   .vertical-payment-drop {
     height: clamp(400px, 52vh, 520px);
     max-width: 100%;
+  }
+
+  /* Tighter stage expansion so the fades finish before the section's
+     overflow clip can produce a hard edge on narrow screens. */
+  .vpd-scene-mask {
+    inset: -80px -44px;
+  }
+
+  .vpd-scene {
+    inset: 80px 44px;
   }
 
   .payment-drop-card {

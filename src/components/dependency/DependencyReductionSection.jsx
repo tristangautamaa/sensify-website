@@ -20,19 +20,20 @@ export default function DependencyReductionSection() {
     <section
       id="dependency"
       data-header-theme="dark"
-      className="relative overflow-hidden bg-[#030609] text-[#F5F7FA]"
+      className="dark-flow-section relative overflow-hidden text-[#F5F7FA]"
       style={{
-        paddingTop: 'clamp(120px, 12vw, 180px)',
-        paddingBottom: 'clamp(120px, 12vw, 180px)',
+        paddingTop: 'clamp(96px, 10vw, 150px)',
+        paddingBottom: 'clamp(96px, 10vw, 150px)',
       }}
     >
-      {/* Ambient glows tying the section to the hero palette */}
+      {/* Ambient glows tying the section to the hero palette — centered away
+          from the top/bottom edges so the dark seams stay flat. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(70% 55% at 85% 30%, rgba(55,138,221,0.12), transparent 60%), radial-gradient(45% 40% at 10% 85%, rgba(12,68,124,0.2), transparent 65%)',
+            'radial-gradient(70% 55% at 85% 38%, rgba(55,138,221,0.12), transparent 55%), radial-gradient(45% 40% at 10% 70%, rgba(12,68,124,0.2), transparent 60%)',
         }}
       />
 

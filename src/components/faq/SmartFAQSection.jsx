@@ -164,7 +164,7 @@ export default function SmartFAQSection() {
     <section
       id="faq"
       data-header-theme="dark"
-      className="relative overflow-hidden bg-[#030609] px-6 py-24 text-[#F5F7FA] md:px-12 md:py-32"
+      className="dark-flow-section relative overflow-hidden px-6 py-24 text-[#F5F7FA] md:px-12 md:py-32"
     >
       {/* Ambient glow */}
       <div
@@ -172,7 +172,7 @@ export default function SmartFAQSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(50% 40% at 20% 10%, rgba(12,68,124,0.18), transparent 60%), radial-gradient(40% 35% at 85% 90%, rgba(216,90,48,0.08), transparent 65%)',
+            'radial-gradient(50% 40% at 20% 26%, rgba(12,68,124,0.18), transparent 60%), radial-gradient(40% 35% at 85% 74%, rgba(216,90,48,0.08), transparent 60%)',
         }}
       />
 

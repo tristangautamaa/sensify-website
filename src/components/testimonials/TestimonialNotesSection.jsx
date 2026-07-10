@@ -44,7 +44,7 @@ export default function TestimonialNotesSection() {
     <section
       id="testimonials"
       data-header-theme="dark"
-      className="relative overflow-hidden bg-[#030609] px-6 py-24 text-[#F5F7FA] md:px-12 md:py-32"
+      className="dark-flow-section relative overflow-hidden px-6 py-24 text-[#F5F7FA] md:px-12 md:py-32"
     >
       {/* Ambient glow */}
       <div
@@ -52,7 +52,7 @@ export default function TestimonialNotesSection() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(55% 40% at 80% 15%, rgba(12,68,124,0.16), transparent 60%), radial-gradient(40% 35% at 12% 80%, rgba(216,90,48,0.08), transparent 65%)',
+            'radial-gradient(55% 40% at 80% 28%, rgba(12,68,124,0.16), transparent 60%), radial-gradient(40% 35% at 12% 72%, rgba(216,90,48,0.08), transparent 60%)',
         }}
       />
 

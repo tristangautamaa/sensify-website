@@ -1,12 +1,10 @@
 /* ClientLogoSection — "Selected References" dark section. Left editorial
    column, right glass panel holding the cycling logo columns. */
 
+/* Background comes from the shared .dark-flow-section canvas so the seams
+   with Testimonials/FAQ stay continuous. */
 .client-logo-section {
   position: relative;
-  background:
-    radial-gradient(circle at 15% 10%, rgba(55, 138, 221, 0.12), transparent 32%),
-    radial-gradient(circle at 85% 70%, rgba(216, 90, 48, 0.1), transparent 28%),
-    #030609;
   color: #f5f7fa;
   padding: clamp(96px, 10vw, 150px) clamp(20px, 5vw, 72px);
 }

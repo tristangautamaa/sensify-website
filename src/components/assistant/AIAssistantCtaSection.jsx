@@ -25,16 +25,17 @@ export default function AIAssistantCtaSection() {
       ref={sectionRef}
       id="assistant"
       data-header-theme="dark"
-      className="relative w-full overflow-hidden"
-      style={{ background: 'linear-gradient(to bottom, #030609 0%, #14191E 100%)' }}
+      className="dark-flow-section relative w-full overflow-hidden"
     >
-      {/* Abstract blue/orange glow replacing the reference's foreground image */}
+      {/* Abstract blue/orange glow replacing the reference's foreground image.
+          Radials are centered inside the strip and fade before its edges, so
+          the section's bottom seam stays exactly the shared dark base. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-64"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-80"
         style={{
           background:
-            'radial-gradient(60% 90% at 30% 100%, rgba(12,68,124,0.4), transparent 70%), radial-gradient(40% 70% at 78% 100%, rgba(216,90,48,0.18), transparent 70%)',
+            'radial-gradient(50% 42% at 30% 50%, rgba(12,68,124,0.38), transparent 70%), radial-gradient(36% 32% at 78% 55%, rgba(216,90,48,0.16), transparent 70%)',
         }}
       />
 

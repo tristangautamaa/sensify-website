@@ -21,7 +21,7 @@ const CLIENT_LOGOS = [
 
 export default function ClientLogoSection() {
   return (
-    <section id="clients" data-header-theme="dark" className="client-logo-section">
+    <section id="clients" data-header-theme="dark" className="client-logo-section dark-flow-section">
       <div className="client-logo-inner">
         <div className="client-logo-copy">
           <FadeUp>

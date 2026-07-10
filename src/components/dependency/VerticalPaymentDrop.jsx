@@ -269,23 +269,28 @@ export default function VerticalPaymentDrop() {
         role="img"
         aria-label="Payment method preview: BCA Virtual Account, QRIS payment, GoPay and e-wallets, credit or debit card, and WhatsApp assisted checkout descending through an owned checkout flow."
       >
-        {/* Environment glows */}
-        <div className="vpd-glow vpd-glow--blue" aria-hidden="true" />
-        <div className="vpd-glow vpd-glow--orange" aria-hidden="true" />
+        {/* Enlarged masked stage: the edge fades happen well outside the
+            card area, so glows and card shadows dissolve into the section
+            background with no visible rectangle. */}
+        <div className="vpd-scene-mask" aria-hidden="true">
+          {/* Environment glows */}
+          <div className="vpd-glow vpd-glow--blue" />
+          <div className="vpd-glow vpd-glow--orange" />
 
-        <div className="vpd-scene" aria-hidden="true">
-          {PAYMENT_CARDS.map((card, index) => (
-            <div
-              key={card.id}
-              ref={(el) => {
-                cardRefs.current[index] = el;
-              }}
-              className="payment-drop-card"
-              data-static-slot={reduced ? wrappedOffset(index, 0) : undefined}
-            >
-              <DropCardSurface card={card} />
-            </div>
-          ))}
+          <div className="vpd-scene">
+            {PAYMENT_CARDS.map((card, index) => (
+              <div
+                key={card.id}
+                ref={(el) => {
+                  cardRefs.current[index] = el;
+                }}
+                className="payment-drop-card"
+                data-static-slot={reduced ? wrappedOffset(index, 0) : undefined}
+              >
+                <DropCardSurface card={card} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

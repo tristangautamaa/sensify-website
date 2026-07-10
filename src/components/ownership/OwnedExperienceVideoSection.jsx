@@ -1,57 +1,90 @@
-import FadeUp from '../ui/FadeUp.jsx';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+
 import OptimizedVideo from '../media/OptimizedVideo.jsx';
 import './OwnedExperienceVideoSection.css';
 
 /**
- * Owned Experience — cinematic video reveal. Replaces the earlier
- * drag-to-compare slider: the transition from a standardized marketplace
- * listing to an owned brand website now plays as a single looping video.
+ * Owned Experience — scroll-led cinematic video section.
  *
- * The video is lazy-loaded and viewport-gated by <OptimizedVideo /> so it
- * never competes with first paint.
+ * Pure media moment: a tall scroll track (200vh) with a sticky 100dvh stage.
+ * The video starts as a lightly inset surface, then expands to fill the whole
+ * viewport as the user scrolls — no overlay copy, chips, or labels. An
+ * sr-only heading keeps the section reachable for assistive tech, but the
+ * video is the only visual.
+ *
+ * Video bytes stay lazy: <OptimizedVideo /> only assigns the source near
+ * the viewport and pauses playback offscreen. Reduced motion renders a
+ * static full-viewport video with no sticky expansion (and OptimizedVideo
+ * swaps autoplay for a manual play button).
  */
 export default function OwnedExperienceVideoSection() {
+  const sectionRef = useRef(null);
+  const reducedMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // Animated inset: interpolating the four edges (not width/height) makes
+  // the fullscreen expansion cheap and artifact-free.
+  const frameTop = useTransform(scrollYProgress, [0, 0.35], ['12vh', '0vh']);
+  const frameRight = useTransform(scrollYProgress, [0, 0.35], ['5vw', '0vw']);
+  const frameBottom = useTransform(scrollYProgress, [0, 0.35], ['12vh', '0vh']);
+  const frameLeft = useTransform(scrollYProgress, [0, 0.35], ['5vw', '0vw']);
+  const frameRadius = useTransform(scrollYProgress, [0, 0.35], ['24px', '0px']);
+
+  const heading = (
+    <h2 className="sr-only">From marketplace product page to owned brand experience</h2>
+  );
+
+  const video = (
+    <OptimizedVideo
+      src="/Video/transition.mp4"
+      poster="/Video/transition-poster.jpg"
+      className="scroll-video-media"
+      lazy
+      autoPlay
+      loop
+      muted
+    />
+  );
+
+  if (reducedMotion) {
+    return (
+      <section
+        id="ownership"
+        data-header-theme="dark"
+        className="scroll-video-section scroll-video-section--static dark-flow-section"
+      >
+        {heading}
+        <div className="scroll-video-frame scroll-video-frame--static">{video}</div>
+      </section>
+    );
+  }
+
   return (
-    <section id="ownership" data-header-theme="dark" className="owned-video-section">
-      <div className="owned-video-bg" aria-hidden="true" />
-
-      <div className="owned-video-inner">
-        <FadeUp className="owned-video-copy">
-          <p className="owned-video-eyebrow font-mono">OWNED EXPERIENCE</p>
-          <h2 className="owned-video-heading font-display">
-            From marketplace product page to <em>owned brand experience.</em>
-          </h2>
-          <p className="owned-video-paragraph">
-            Watch how a standardized marketplace layout becomes a brand-owned shopping journey —
-            with product storytelling, direct checkout paths, and an assistant that helps customers
-            choose.
-          </p>
-        </FadeUp>
-
-        <FadeUp delay={0.15} className="owned-video-stage">
-          <div className="owned-video-shell">
-            <div className="owned-video-topbar" aria-hidden="true">
-              <span className="owned-video-chip">TRANSITION PREVIEW</span>
-              <span className="owned-video-chip owned-video-chip--status">GENERATED CONCEPT</span>
-            </div>
-            <OptimizedVideo
-              src="/Video/transition.mp4"
-              poster="/Video/transition-poster.jpg"
-              className="owned-experience-video"
-              lazy
-              autoPlay
-              loop
-              muted
-            />
-          </div>
-
-          <p className="owned-video-label font-mono">
-            MARKETPLACE STRUCTURE <span aria-hidden="true">→</span> OWNED BRAND WEBSITE
-          </p>
-          <p className="owned-video-note">
-            Video preview generated for concept direction. Final footage can be replaced later.
-          </p>
-        </FadeUp>
+    <section
+      ref={sectionRef}
+      id="ownership"
+      data-header-theme="dark"
+      className="scroll-video-section dark-flow-section"
+    >
+      {heading}
+      <div className="scroll-video-sticky">
+        <motion.div
+          className="scroll-video-frame"
+          style={{
+            top: frameTop,
+            right: frameRight,
+            bottom: frameBottom,
+            left: frameLeft,
+            borderRadius: frameRadius,
+          }}
+        >
+          {video}
+        </motion.div>
       </div>
     </section>
   );

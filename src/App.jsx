@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import SiteLoader from './components/loader/SiteLoader.jsx';
+import AiLoader from './components/loader/AiLoader.jsx';
 import StaggeredMenu from './components/react-bits/StaggeredMenu/StaggeredMenu.jsx';
 import Hero from './components/hero/Hero.jsx';
 import ProblemCardsSection from './components/problem/ProblemCardsSection.jsx';
@@ -42,9 +42,22 @@ export default function App() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  // Lock body scroll only while the entry loader is visible.
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [loading]);
+
   return (
     <>
-      <SiteLoader isLoading={loading} />
+      <AiLoader isLoading={loading} text="Sensify" subtitle="Preparing owned channel" />
 
       {/* App-level so the fixed overlay wins the root stacking context —
           keeping it inside the hero traps the open panel behind sections

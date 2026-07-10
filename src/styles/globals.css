@@ -37,6 +37,13 @@ body {
   padding: 0;
 }
 
+/* One shared dark canvas behind everything — any subpixel gap between
+   stacked sections reveals this exact color, so seams can never show. */
+html,
+#root {
+  background: var(--color-hero-bg);
+}
+
 body {
   background: var(--color-hero-bg);
   color: var(--color-text);
@@ -99,6 +106,49 @@ canvas {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ---------- Dark-flow system ----------
+   Consecutive dark sections share one flat canvas color (#030609) so
+   black-to-black transitions read as one continuous surface. Accent glows
+   are interior radial blobs, never full-width strips: percentage insets
+   keep them clear of the section's top/bottom edges, so every seam
+   resolves to the exact shared base color — no bands, no lines. */
+
+:root {
+  --dark-flow-bg: #030609;
+  --dark-flow-blue: rgba(55, 138, 221, 0.14);
+  --dark-flow-orange: rgba(216, 90, 48, 0.09);
+}
+
+.dark-flow-section {
+  position: relative;
+  /* Own stacking context so the negative-z accent blobs paint above this
+     section's background but below all of its content. */
+  isolation: isolate;
+  background: var(--dark-flow-bg);
+}
+
+.dark-flow-section::before {
+  content: '';
+  position: absolute;
+  inset: 8% -16% 52% 56%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(50% 50% at 50% 50%, var(--dark-flow-blue), transparent 70%);
+  filter: blur(18px);
+}
+
+.dark-flow-section::after {
+  content: '';
+  position: absolute;
+  inset: 54% 58% 12% -14%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(50% 50% at 50% 50%, var(--dark-flow-orange), transparent 70%);
+  filter: blur(22px);
 }
 
 /* ---------- Shared section utilities (post-hero sections) ---------- */

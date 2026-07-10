@@ -15,7 +15,9 @@
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background: linear-gradient(to bottom, #07111c 0%, #030609 45%);
+  /* Top edge resolves to the shared dark base (#030609) so the seam with
+     the FAQ section above never shows; the blue wash lives inside. */
+  background: linear-gradient(to bottom, #030609 0%, #07111c 22%, #030609 62%);
   will-change: clip-path;
 }
 
