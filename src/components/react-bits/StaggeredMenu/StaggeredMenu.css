@@ -7,6 +7,11 @@
   inset: 0;
   z-index: 1000;
   pointer-events: none;
+  /* The closed panel/prelayers sit translated 100% off the right edge.
+     Clip them at the viewport so pinch-zoom/pan on phones can never
+     reveal them as blank space beside the page. */
+  overflow: hidden;
+  overflow: clip;
 }
 
 /* Dimmed click-catcher behind the panel while open */

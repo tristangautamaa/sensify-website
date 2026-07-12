@@ -53,8 +53,16 @@
 
 /* ---- mobile ---- */
 
+/* Landscape transition video is skipped on small screens (the component
+   returns null ≤767px) — a desktop composition can't read well on a phone.
+   This block is only a CSS safety net in case the section ever renders. */
 @media (max-width: 767px) {
   .scroll-video-section {
-    min-height: 180vh;
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
   }
 }

@@ -1,21 +1,28 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 
 /**
- * Email-client-style note card, rebranded for Sensify. Holds placeholder
- * conversation notes until real, approved client references exist — the
- * card itself carries a "Placeholder note" line so it can never be mistaken
- * for a real testimonial.
+ * Email-client-style note card for early Sensify client references. Shows the
+ * brand logo (with initials fallback if the image fails), sender and project,
+ * a short quote, focus tags, and a system-focus line tying the note back to
+ * the part of the Sensify system it relates to.
  */
 export default function ClientNoteCard({
+  avatarSrc,
+  avatarAlt,
   avatarFallback,
   senderName,
-  senderNote,
-  timestamp,
+  project,
+  label,
   message,
   tags = [],
+  focusNote,
   accent = '#378ADD',
   delay = 0,
 }) {
+  const [logoFailed, setLogoFailed] = useState(false);
+  const showLogo = Boolean(avatarSrc) && !logoFailed;
+
   return (
     <motion.article
       className="flex h-full flex-col overflow-hidden rounded-3xl border border-[rgba(245,247,250,0.12)]"
@@ -25,29 +32,42 @@ export default function ClientNoteCard({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.7, ease: 'easeOut', delay }}
     >
-      {/* Header: avatar + sender + status */}
+      {/* Header: logo + sender + note label */}
       <header className="flex items-center gap-3.5 border-b border-[rgba(245,247,250,0.1)] p-5">
         <span
-          className="font-display flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-sm text-[#F5F7FA]"
+          className="font-display flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full text-sm text-[#F5F7FA]"
           style={{
             border: `1px solid ${accent}`,
-            background: `linear-gradient(140deg, ${accent}30, transparent 70%)`,
+            // Dark surface behind logos: the white-on-transparent marks need it to read.
+            background: showLogo
+              ? 'rgba(3,6,9,0.55)'
+              : `linear-gradient(140deg, ${accent}30, transparent 70%)`,
           }}
-          aria-hidden="true"
+          aria-hidden={showLogo ? undefined : true}
         >
-          {avatarFallback}
+          {showLogo ? (
+            <img
+              src={avatarSrc}
+              alt={avatarAlt}
+              loading="lazy"
+              className="h-full w-full object-contain p-1.5"
+              onError={() => setLogoFailed(true)}
+            />
+          ) : (
+            avatarFallback
+          )}
         </span>
         <div className="min-w-0 flex-1">
-          <p className="truncate text-[14px] font-semibold text-[#F5F7FA]">{senderName}</p>
+          <p className="text-[14px] font-semibold break-words text-[#F5F7FA]">{senderName}</p>
           <p className="font-mono mt-0.5 text-[0.58rem] tracking-[0.16em] text-[rgba(245,247,250,0.45)] uppercase">
-            {senderNote}
+            {project}
           </p>
         </div>
         <span
           className="font-mono shrink-0 rounded-full border px-2.5 py-1 text-[0.52rem] tracking-[0.14em] uppercase"
           style={{ borderColor: `${accent}66`, color: accent }}
         >
-          {timestamp}
+          {label}
         </span>
       </header>
 
@@ -70,19 +90,19 @@ export default function ClientNoteCard({
         ))}
       </div>
 
-      {/* Read-only reply row (visual only) */}
-      <div className="border-t border-[rgba(245,247,250,0.1)] p-4">
-        <div className="flex items-center justify-between rounded-full border border-[rgba(245,247,250,0.1)] bg-[rgba(3,6,9,0.5)] px-4 py-2.5">
-          <span className="text-[12px] text-[rgba(245,247,250,0.35)]">
-            Reply with real client quote later...
-          </span>
-          <span
-            aria-hidden="true"
-            className="h-1.5 w-1.5 shrink-0 rounded-full"
-            style={{ background: accent, opacity: 0.6 }}
-          />
+      {/* System focus row */}
+      {focusNote && (
+        <div className="border-t border-[rgba(245,247,250,0.1)] p-4">
+          <div className="flex items-center justify-between gap-3 rounded-full border border-[rgba(245,247,250,0.1)] bg-[rgba(3,6,9,0.5)] px-4 py-2.5">
+            <span className="text-[12px] leading-[1.5] text-[rgba(245,247,250,0.5)]">{focusNote}</span>
+            <span
+              aria-hidden="true"
+              className="h-1.5 w-1.5 shrink-0 rounded-full"
+              style={{ background: accent, opacity: 0.6 }}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </motion.article>
   );
 }

@@ -7,8 +7,7 @@ import AssistantDashboardMock from './AssistantDashboardMock.jsx';
 /**
  * AI Assistant showcase CTA — a customer-facing shopping assistant that
  * lives on the brand's owned website: product recommendations, comparisons,
- * payment/shipping/care questions. Preview interface only; real product
- * data and checkout logic connect later.
+ * and payment/shipping/care questions.
  */
 export default function AIAssistantCtaSection() {
   const sectionRef = useRef(null);
@@ -61,7 +60,7 @@ export default function AIAssistantCtaSection() {
             </FadeUp>
 
             <FadeUp delay={0.25}>
-              <div className="mt-9 flex flex-col items-start gap-4">
+              <div className="mt-9">
                 <a
                   href="#assistant-demo"
                   className="inline-flex items-center gap-2.5 rounded-full border border-[rgba(245,247,250,0.12)] bg-[#D85A30] px-7 py-4 text-sm font-semibold text-[#F5F7FA] transition-all duration-300 hover:-translate-y-[1px] hover:bg-[#C94E28] hover:shadow-[0_18px_44px_rgba(216,90,48,0.28)] active:translate-y-0"
@@ -69,10 +68,6 @@ export default function AIAssistantCtaSection() {
                   Ask Sensify Assistant
                   <span aria-hidden="true">→</span>
                 </a>
-                <p className="text-[12px] text-[rgba(245,247,250,0.45)]">
-                  For now, this is a product preview interface. Real product data, inventory, and
-                  checkout logic can be connected later.
-                </p>
               </div>
             </FadeUp>
           </div>

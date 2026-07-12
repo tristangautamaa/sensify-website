@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 
+import useMediaQuery from '../../hooks/useMediaQuery.js';
 import OptimizedVideo from '../media/OptimizedVideo.jsx';
 import './OwnedExperienceVideoSection.css';
 
@@ -21,6 +22,10 @@ import './OwnedExperienceVideoSection.css';
 export default function OwnedExperienceVideoSection() {
   const sectionRef = useRef(null);
   const reducedMotion = useReducedMotion();
+  // The master video is a landscape desktop composition — it can't read
+  // well on a phone, so the whole section is skipped on small screens and
+  // the page flows straight from System into Infrastructure.
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -35,13 +40,19 @@ export default function OwnedExperienceVideoSection() {
   const frameLeft = useTransform(scrollYProgress, [0, 0.35], ['5vw', '0vw']);
   const frameRadius = useTransform(scrollYProgress, [0, 0.35], ['24px', '0px']);
 
+  // All hooks are called above this line, so the mobile skip never changes
+  // the hook order when the viewport class flips (e.g. tablet rotation).
+  if (isMobile) {
+    return null;
+  }
+
   const heading = (
     <h2 className="sr-only">From marketplace product page to owned brand experience</h2>
   );
 
   const video = (
     <OptimizedVideo
-      src="/Video/transition.mp4"
+      src="/Video/final.mp4"
       poster="/Video/transition-poster.jpg"
       className="scroll-video-media"
       lazy

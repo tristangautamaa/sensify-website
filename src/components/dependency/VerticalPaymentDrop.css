@@ -212,7 +212,7 @@
   opacity: 0.08;
 }
 
-/* Masked generic account blocks (bca-va) — abstract bars, never digits */
+/* Masked generic account blocks (va) — abstract bars, never digits */
 .vpd-va-blocks {
   position: absolute;
   right: clamp(20px, 2.2vw, 32px);
@@ -252,7 +252,7 @@
   background: rgba(245, 247, 250, 0.85);
 }
 
-/* Wallet waves (gopay) */
+/* Wallet waves (ewallet) */
 .vpd-waves {
   position: absolute;
   right: clamp(14px, 1.8vw, 26px);

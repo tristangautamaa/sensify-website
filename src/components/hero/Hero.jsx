@@ -53,27 +53,25 @@ export default function Hero() {
         </p>
 
         <h1 className="hero-title">
-          <span>Your marketplace</span>
-          <span>is not your home.</span>
-          <span>It is rented</span>
-          <span>shelf space.</span>
+          <span>An AI-powered storefront</span>
+          <span>built for your brand.</span>
         </h1>
 
         <div className="hero-lower">
           <div className="hero-copy">
             <p className="hero-subtitle">
-              Sensify helps brands move from marketplace dependency into their own official
-              website — then keeps it maintained at a lower long-term cost.
+              Sensify helps brands move beyond marketplace-only selling with an owned storefront,
+              AI-assisted shopping, checkout paths, and ongoing maintenance.
             </p>
             <div className="hero-actions">
               <a href="#contact" className="btn btn-primary">
-                Plan my website transition
+                Build my AI storefront
                 <span className="btn-arrow" aria-hidden="true">
                   →
                 </span>
               </a>
               <a href="#system" className="btn btn-secondary">
-                See the system
+                See how it works
               </a>
             </div>
           </div>
@@ -82,7 +80,6 @@ export default function Hero() {
 
       <div className="hero-footer-note">
         <span>Built for brands ready to grow beyond rented traffic.</span>
-        <span>Official website • campaign pages • monthly maintenance</span>
       </div>
 
       <div className="hero-scroll-strip" aria-hidden="true">

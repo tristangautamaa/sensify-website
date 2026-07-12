@@ -3,12 +3,12 @@ import { Check, X } from 'lucide-react';
 import FadeUp from '../ui/FadeUp.jsx';
 import HlsVideoCircle from './HlsVideoCircle.jsx';
 
-const WITHOUT_OWNED_CHANNEL = [
-  'Campaign pages rebuilt manually for every launch.',
-  'Product information scattered across chats, sheets, and marketplaces.',
-  'Small website changes become slow freelancer coordination.',
-  'Customer journeys depend entirely on platform templates.',
-  'No consistent place to measure direct brand interest.',
+const WITHOUT_SENSIFY = [
+  'Marketplace fees and admin costs keep eating into your margin.',
+  'Customer data stays fragmented across platforms, chats, and order records.',
+  'Your brand experience is limited by marketplace templates.',
+  'Campaign performance is hard to measure outside the platform’s own analytics.',
+  'Customer relationships stay platform-owned, not brand-owned.',
 ];
 
 const WITH_SENSIFY = [
@@ -46,7 +46,7 @@ function InfraCard({ children, negative = false, delay = 0 }) {
 
 /**
  * Negative/positive comparison around a central operations visual:
- * "without an owned channel" vs "with Sensify infrastructure".
+ * "without Sensify" vs "with Sensify infrastructure".
  */
 export default function InfrastructureSection() {
   return (
@@ -84,9 +84,9 @@ export default function InfrastructureSection() {
 
           <div className="flex flex-col gap-4 lg:col-start-1 lg:row-start-1">
             <h3 className="mb-1 text-[0.72rem] font-semibold tracking-[0.28em] text-[#D85A30]">
-              WITHOUT AN OWNED CHANNEL
+              WITHOUT SENSIFY
             </h3>
-            {WITHOUT_OWNED_CHANNEL.map((item, i) => (
+            {WITHOUT_SENSIFY.map((item, i) => (
               <InfraCard key={item} negative delay={0.05 * i}>
                 {item}
               </InfraCard>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import useMediaQuery from './hooks/useMediaQuery.js';
 import AiLoader from './components/loader/AiLoader.jsx';
 import StaggeredMenu from './components/react-bits/StaggeredMenu/StaggeredMenu.jsx';
 import Hero from './components/hero/Hero.jsx';
@@ -26,13 +27,19 @@ const menuItems = [
   { label: 'System', ariaLabel: 'View the Sensify system', link: '#system' },
   { label: 'Experience', ariaLabel: 'View the owned brand experience', link: '#ownership' },
   { label: 'Infrastructure', ariaLabel: 'View infrastructure deliverables', link: '#infrastructure' },
-  { label: 'Notes', ariaLabel: 'View placeholder client notes', link: '#testimonials' },
+  { label: 'Notes', ariaLabel: 'View client notes', link: '#testimonials' },
   { label: 'FAQ', ariaLabel: 'Ask Sensify a question', link: '#faq' },
   { label: 'Contact', ariaLabel: 'Contact Sensify', link: '#contact' }
 ];
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  // OwnedExperienceVideoSection skips itself ≤767px, so #ownership does not
+  // exist on phones — drop its menu entry there to avoid a dead anchor.
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const visibleMenuItems = isMobile
+    ? menuItems.filter((item) => item.link !== '#ownership')
+    : menuItems;
 
   // ShaderGradient exposes no reliable "ready" callback, so the loader runs
   // on a timed fallback — long enough for the shader's first frames, and it
@@ -64,7 +71,7 @@ export default function App() {
           that create their own stacking contexts. */}
       <StaggeredMenu
         position="right"
-        items={menuItems}
+        items={visibleMenuItems}
         logoUrl={sensifyLogo}
         colors={['#0C447C', '#378ADD', '#D85A30']}
         accentColor="#D85A30"

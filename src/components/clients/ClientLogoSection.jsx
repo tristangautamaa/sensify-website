@@ -27,17 +27,15 @@ export default function ClientLogoSection() {
           <FadeUp>
             <p className="cls-eyebrow">SELECTED REFERENCES</p>
             <h2 className="cls-heading font-display">
-              Built for brands moving beyond rented channels.
+              Brands and operators <em>we’ve supported.</em>
             </h2>
           </FadeUp>
           <FadeUp delay={0.15}>
             <p className="cls-paragraph">
-              A reference space for brands, institutions, and operators connected to the Sensify
-              ecosystem. Replace or refine this list as the client portfolio becomes public.
+              Selected work from across the Sensify ecosystem — owned websites, commerce, and the
+              ongoing maintenance behind them.
             </p>
-            <p className="cls-note">
-              Logos shown here can be adjusted as public references are approved.
-            </p>
+            <p className="cls-note">Public references — updated as new work is approved.</p>
           </FadeUp>
         </div>
 

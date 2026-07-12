@@ -3,23 +3,28 @@ import {
   BookOpen,
   PackageSearch,
   Sparkles,
+  Tags,
   Truck,
   Wallet,
 } from 'lucide-react';
 
+// Consumer-facing assistance modules, mirroring what the assistant actually
+// covers: recommendations by need and budget, comparisons, price and promo
+// questions, usage and care, payment paths, and order/shipping questions.
 const PREVIEW_CARDS = [
-  { icon: PackageSearch, title: 'Product match', note: 'Based on customer needs' },
-  { icon: ArrowLeftRight, title: 'Compare items', note: 'Feature and fit guidance' },
-  { icon: Wallet, title: 'Payment options', note: 'QRIS, VA, e-wallet, card' },
-  { icon: Truck, title: 'Shipping questions', note: 'Delivery and order info' },
-  { icon: BookOpen, title: 'Care guide', note: 'Material and usage notes' },
+  { icon: PackageSearch, title: 'Recommendations', note: 'By need and budget' },
+  { icon: ArrowLeftRight, title: 'Compare products', note: 'Differences at a glance' },
+  { icon: Tags, title: 'Price & promos', note: 'Prices, vouchers, stock' },
+  { icon: BookOpen, title: 'Usage & care', note: 'How to use and maintain' },
+  { icon: Wallet, title: 'Payment options', note: 'From QRIS to credit card' },
+  { icon: Truck, title: 'Orders & shipping', note: 'Delivery, tracking, returns' },
 ];
 
 const FLOW_ITEMS = [
   'Understand customer intent',
   'Recommend relevant products',
   'Explain differences clearly',
-  'Answer payment and shipping questions',
+  'Answer payment, shipping, and order questions',
   'Keep the journey on your website',
 ];
 

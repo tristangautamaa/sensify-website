@@ -2,39 +2,48 @@ import FadeUp from '../ui/FadeUp.jsx';
 import ClientNoteCard from './ClientNoteCard.jsx';
 
 /**
- * Placeholder testimonials section — honestly labeled conversation notes
- * where real client quotes and case-study excerpts will live once Sensify
- * has approved public references. No fake clients, no fake results.
+ * Client notes from early Sensify use cases. Each note ties back to a part of
+ * the Sensify system — owned storefront channel, AI-assisted response, and
+ * centralized commerce data — without invented metrics or inflated claims.
  */
 const CLIENT_NOTES = [
   {
-    avatarFallback: 'FD',
-    senderName: 'Fashion brand founder',
-    senderNote: 'Placeholder note',
-    timestamp: 'Future case study',
+    avatarSrc: '/Logo/poncol.png',
+    avatarAlt: 'Poncol Padel House logo',
+    avatarFallback: 'LI',
+    senderName: 'Linda Iskandar',
+    project: 'Poncol Padel House',
+    label: 'Owned channel note',
     message:
-      'We already sell on marketplaces, but our campaigns feel trapped inside product listings. We need a website that makes our brand feel more official.',
-    tags: ['Campaign page', 'Catalog', 'Brand story'],
+      'Our network in the market was limited until we created our own marketplace to gain traction. It has proven to attract more people to our court.',
+    tags: ['Owned channel', 'Traction', 'Booking flow'],
+    focusNote: 'Owned-channel setup for discovery, booking interest, and customer flow.',
     accent: '#378ADD',
   },
   {
-    avatarFallback: 'BO',
-    senderName: 'Brand operator',
-    senderNote: 'Placeholder note',
-    timestamp: 'Future maintenance story',
+    avatarSrc: '/Logo/giseu.png',
+    avatarAlt: 'Giseu logo',
+    avatarFallback: 'EL',
+    senderName: 'Emeryn Luandha',
+    project: 'Giseu',
+    label: 'AI assistant note',
     message:
-      'Our problem is not only building a website. It is keeping it updated whenever products, promos, and launch pages change.',
-    tags: ['Maintenance', 'Landing pages', 'Updates'],
+      'We had difficulties answering inquiries across multiple platforms. Sensify’s AI system helped us respond faster and more accurately, so our clients could get better answers in less time.',
+    tags: ['AI assistant', 'Customer inquiries', 'Faster response'],
+    focusNote: 'AI-assisted product inquiry flow for faster customer support.',
     accent: '#D85A30',
   },
   {
-    avatarFallback: 'GM',
-    senderName: 'Growth manager',
-    senderNote: 'Placeholder note',
-    timestamp: 'Future growth story',
+    avatarSrc: '/Logo/tokokuat.jpg',
+    avatarAlt: 'Toko Kuat logo',
+    avatarFallback: 'KN',
+    senderName: 'Kanisius Nathaniel',
+    project: 'Toko Kuat',
+    label: 'Centralized system note',
     message:
-      'We want to keep marketplaces for reach, but we need a second channel where we can understand traffic, customers, and campaign performance.',
-    tags: ['Analytics', 'Owned channel', 'Checkout'],
+      'We had difficulties with our data systems, customer information, inventory management, and other operational details. Sensify helped solve this through a centralized system to maintain our data.',
+    tags: ['Centralized data', 'Customer info', 'Inventory'],
+    focusNote: 'Centralized commerce data for customer, inventory, and operational visibility.',
     accent: '#378ADD',
   },
 ];
@@ -62,11 +71,12 @@ export default function TestimonialNotesSection() {
             CLIENT NOTES
           </p>
           <h2 className="font-display text-4xl leading-[1.08] md:text-5xl">
-            The questions brands ask before they build an <em>owned channel.</em>
+            Notes from brands building <em>owned-channel systems.</em>
           </h2>
           <p className="mt-6 max-w-[620px] text-[15px] leading-[1.75] text-[rgba(245,247,250,0.68)]">
-            These are placeholder conversation cards for now. Replace them with real client notes,
-            testimonials, or case-study excerpts once Sensify has approved public references.
+            Client notes from early Sensify use cases — showing how owned channels, AI-assisted
+            responses, and centralized commerce systems can support brands beyond scattered
+            marketplace activity.
           </p>
         </FadeUp>
 

@@ -6,155 +6,163 @@ import SmartFAQ from './SmartFAQ.jsx';
  */
 const FAQ_ENTRIES = [
   {
-    title: 'Do I still need marketplaces?',
-    keywords: 'marketplace, marketplaces, shopee, tokopedia, tiktok shop, replace',
+    title: 'What does Sensify do?',
+    keywords: 'sensify, what does sensify do, what is sensify, about sensify',
     answer:
-      'Sensify is not meant to replace marketplaces immediately. Marketplaces can remain acquisition channels, while your official website becomes the owned channel for brand experience, campaigns, customer journey, and long-term control.',
-    ctaText: 'Plan my transition',
-    ctaLink: '#contact',
+      'Sensify helps brands build and maintain their own official website, so they are not fully dependent on marketplaces. The goal is to create an owned channel where the brand can control its story, product journey, campaign pages, checkout paths, and long-term customer relationship.',
+    ctaText: 'See how Sensify works',
+    ctaLink: '#system',
   },
   {
-    title: 'What does Sensify build?',
-    keywords: 'build, website, official website, deliverables',
+    title: 'Is Sensify just a web design service?',
+    keywords: 'web design, design service, agency, just design, more than design',
     answer:
-      'Sensify can build your official website, product catalog, landing pages, product detail pages, campaign pages, analytics setup, and conversion paths such as WhatsApp or checkout flows.',
+      'No. Sensify is not only about making a website look good. It focuses on building an owned-channel system for brands, including website structure, product presentation, campaign flows, payment direction, maintenance, and future growth outside marketplace-only selling.',
     ctaText: 'See the system',
     ctaLink: '#system',
   },
   {
-    title: 'Can Sensify maintain the website?',
-    keywords: 'maintain, maintenance, update, monthly',
+    title: 'Do I still need marketplaces?',
+    keywords: 'marketplace, marketplaces, still need marketplaces, shopee, tokopedia, tiktok shop',
     answer:
-      'Yes. Maintenance is central to Sensify. The goal is to help your brand update products, campaign pages, content, and small fixes without needing a full internal tech team.',
-    ctaText: 'Ask about maintenance',
+      'Yes. Marketplaces can still be useful for reach, traffic, and discovery. Sensify does not ask brands to abandon marketplaces. Instead, it helps brands create a second channel that they own, so the business is not fully controlled by marketplace rules, fees, ranking, or layout limitations.',
+    ctaText: 'Plan my second channel',
     ctaLink: '#contact',
   },
   {
-    title: 'How is this different from a web design agency?',
-    keywords: 'agency, web agency, design agency, difference',
+    title: 'Why is marketplace-only selling risky?',
+    keywords: 'marketplace risk, risky, marketplace only, dependency, algorithm, discount pressure',
     answer:
-      'A typical web agency often focuses on launching a website. Sensify focuses on the transition from marketplace dependency into an owned channel, including structure, campaign readiness, maintenance, and AI-assisted update workflows.',
-    ctaText: 'Book a consultation',
-    ctaLink: '#contact',
-  },
-  {
-    title: 'Can my website support QRIS?',
-    keywords: 'qris, payment, payments, checkout',
-    answer:
-      'Yes, the owned website can be designed to support familiar payment flows such as QRIS, virtual accounts, bank transfer, e-wallet, card payments, or assisted checkout depending on the final implementation scope.',
-    ctaText: 'See payment paths',
+      'Marketplace-only selling can make a brand dependent on platform algorithms, discount pressure, limited customer data, and standardized product pages. This makes it harder for the brand to build identity, loyalty, and a customer journey that feels truly owned.',
+    ctaText: 'See the dependency shift',
     ctaLink: '#dependency',
   },
   {
-    title: 'Can I still use WhatsApp?',
-    keywords: 'whatsapp, wa, chat, assisted checkout',
+    title: 'What does an owned website give my brand?',
+    keywords: 'owned website, owned channel, ownership, control, brand control',
     answer:
-      'Yes. For many Indonesian brands, WhatsApp remains useful for assisted selling, questions, custom orders, and B2B inquiries. Sensify can include WhatsApp CTA flows in the website journey.',
-    ctaText: 'Plan my flow',
-    ctaLink: '#contact',
-  },
-  {
-    title: 'Is this only for big brands?',
-    keywords: 'big brand, small brand, sme, umkm, startup',
-    answer:
-      'No. Sensify is designed for growing brands that are ready to look more official and reduce marketplace dependency, even if they still use marketplaces as their main source of reach.',
-    ctaText: 'Start with consultation',
-    ctaLink: '#contact',
-  },
-  {
-    title: 'Why do I need a website if I already sell on Shopee?',
-    keywords: 'shopee, already sell, marketplace only',
-    answer:
-      'Marketplaces help you reach buyers, but they standardize your page and keep much of the customer journey inside the platform. Your own website gives you a home base for storytelling, campaigns, analytics, and direct trust-building.',
-    ctaText: 'Compare experience',
-    ctaLink: '#ownership',
-  },
-  {
-    title: 'What is an owned channel?',
-    keywords: 'owned channel, own channel, channel',
-    answer:
-      'An owned channel is a digital space your brand controls, such as your official website. It lets you shape the experience, organize campaigns, guide customers, and collect stronger signals outside marketplace templates.',
+      'An owned website gives your brand more control over how customers experience your products. You can shape the homepage, product storytelling, campaign pages, checkout flow, content, analytics, and customer education without being limited by marketplace templates.',
     ctaText: 'See ownership',
     ctaLink: '#ownership',
   },
   {
-    title: 'How long does it take?',
-    keywords: 'timeline, duration, how long, launch',
+    title: 'Who is Sensify suitable for?',
+    keywords: 'who is it for, suitable, fashion, lifestyle, beauty, growing brands',
     answer:
-      'Timeline depends on scope, content readiness, catalog complexity, and integrations. A focused first version can be planned as a staged launch rather than waiting for a perfect full build.',
-    ctaText: 'Book a planning call',
+      'Sensify is suitable for growing brands that already sell through marketplaces, Instagram, TikTok Shop, or offline channels, but want a more serious official website. It is especially useful for fashion, lifestyle, beauty, product, and niche brands that care about presentation and long-term brand ownership.',
+    ctaText: 'Start with consultation',
     ctaLink: '#contact',
   },
   {
-    title: 'Do I need to hire a developer?',
-    keywords: 'developer, hire, internal team, tech team',
+    title: 'What pages can Sensify build?',
+    keywords: 'pages, homepage, product pages, campaign landing pages, catalog, build',
     answer:
-      'Not necessarily. Sensify is designed to reduce the need for early internal technical hiring by combining website setup, maintenance support, and structured update workflows.',
-    ctaText: 'Discuss your setup',
-    ctaLink: '#contact',
-  },
-  {
-    title: 'Can Sensify help with campaign pages?',
-    keywords: 'campaign, landing page, promo, launch',
-    answer:
-      'Yes. Campaign and landing pages are one of the main reasons to own a website. They let your brand create dedicated experiences for launches, promos, collections, and ads outside marketplace templates.',
+      'A Sensify website can include a homepage, brand story, product catalog, product detail pages, campaign landing pages, FAQ, checkout direction, payment information, AI shopping assistant preview, and other sections based on the brand’s needs.',
     ctaText: 'See the system',
     ctaLink: '#system',
   },
   {
-    title: 'What does the AI Assistant do?',
-    keywords: 'ai assistant, assistant, ai, shopping, recommendation',
+    title: 'Do I need a full custom e-commerce platform from the start?',
+    keywords: 'full platform, custom ecommerce, e-commerce platform, overbuild, from the start',
     answer:
-      'The AI Assistant is a customer-facing shopping guide that sits inside your official website. It helps visitors ask for product recommendations, compare options, and get answers about payment, shipping, stock, and care — keeping the journey on your owned channel.',
-    ctaText: 'Ask Sensify Assistant',
+      'Not always. Many brands should start with a focused launch scope first, then expand over time. Sensify helps avoid overbuilding by creating the most important owned-channel experience first, then improving it through maintenance and future updates.',
+    ctaText: 'Plan a focused scope',
+    ctaLink: '#contact',
+  },
+  {
+    title: 'Can the website match my brand style?',
+    keywords: 'brand style, match my brand, look and feel, visual identity, premium presentation',
+    answer:
+      'Yes. The website direction should follow the brand’s product, audience, photography, tone, and desired level of premium presentation. Sensify should not make every brand look the same.',
+    ctaText: 'Discuss your direction',
+    ctaLink: '#contact',
+  },
+  {
+    title: 'What payment methods can the website support?',
+    keywords: 'payment, payments, qris, virtual account, bank transfer, e-wallet, payment methods',
+    answer:
+      'The website can support familiar payment paths such as QRIS, virtual accounts, bank transfer, e-wallets, cards, and assisted checkout. The final setup depends on the payment gateway and operational flow chosen by the brand.',
+    ctaText: 'See payment paths',
+    ctaLink: '#dependency',
+  },
+  {
+    title: 'Can customers checkout directly from the website?',
+    keywords: 'checkout, direct checkout, buy directly, order from website, whatsapp',
+    answer:
+      'Yes, the website can be designed with a direct checkout journey. For brands that still prefer a more personal sales flow, Sensify can also support assisted checkout, such as directing customers to WhatsApp or another confirmation process.',
+    ctaText: 'Plan my checkout flow',
+    ctaLink: '#contact',
+  },
+  {
+    title: 'What is the Sensify AI Assistant?',
+    keywords: 'ai assistant, assistant, what is the ai assistant, shopping assistant, chatbot, product questions',
+    answer:
+      'The Sensify AI Assistant is a shopping assistant concept for the brand’s own website. It helps customers ask about products, compare options, check prices and promos, and get payment or shipping guidance without leaving the brand’s website.',
+    ctaText: 'Try the assistant preview',
     ctaLink: '#assistant',
   },
   {
-    title: 'Is the AI Assistant connected to my website?',
-    keywords: 'connected, backend, integration, ai connected',
+    title: 'Is the AI Assistant connected to real product data?',
+    keywords: 'real product data, connected, integration, sample data, backend, production',
     answer:
-      'In the current prototype, the AI Assistant should be treated as a preview interface. Real product data, inventory, and checkout logic can be connected later based on the brand’s catalog and technical scope.',
-    ctaText: 'Discuss workflow',
+      'In the current preview, the assistant runs on scripted sample responses to show how the experience works. In production, it can be connected safely to the brand’s real product catalog, policies, inventory, or checkout logic through a backend integration.',
+    ctaText: 'Discuss integration',
     ctaLink: '#contact',
   },
   {
-    title: 'Can Sensify migrate products from marketplaces?',
-    keywords: 'migrate, migration, product data, catalog',
+    title: 'Can Sensify maintain the website after launch?',
+    keywords: 'maintenance, maintain, after launch, updates, bug fixes, support',
     answer:
-      'Sensify can help structure product catalog information for the website, but the exact migration process depends on your existing product data, images, variants, and marketplace export options.',
-    ctaText: 'Review catalog',
+      'Yes. Maintenance is a core part of Sensify. After launch, Sensify can help update products, adjust campaign pages, fix bugs, improve performance, refresh content, and keep the website aligned with the brand’s current activity.',
+    ctaText: 'Ask about maintenance',
     ctaLink: '#contact',
   },
   {
-    title: 'Will the website replace Instagram?',
-    keywords: 'instagram, social media, social',
+    title: 'What happens when my products or campaigns change?',
+    keywords: 'campaign updates, campaigns change, products change, price change, new products, refresh',
     answer:
-      'No. Instagram can remain an acquisition and community channel. Your website becomes the destination for campaigns, product storytelling, catalog browsing, and stronger brand trust.',
-    ctaText: 'Plan campaign path',
+      'Sensify can help update the website when the brand launches new products, changes prices, runs campaigns, updates visuals, or needs new landing pages. The goal is to keep the website active instead of letting it become outdated after launch.',
+    ctaText: 'Plan ongoing updates',
     ctaLink: '#contact',
   },
   {
-    title: 'Can I use this for B2B?',
-    keywords: 'b2b, wholesale, supplier, inquiry',
+    title: 'How long does it take to launch?',
+    keywords: 'timeline, how long, duration, launch, go live',
     answer:
-      'Yes. Sensify can support inquiry flows, product specification pages, quote requests, WhatsApp contact paths, and structured catalog pages for B2B or wholesale contexts.',
-    ctaText: 'Ask about B2B',
+      'The timeline depends on the number of pages, product complexity, content readiness, and required integrations. A focused first version can usually be launched faster than a full custom platform, then improved gradually after going live.',
+    ctaText: 'Book a planning call',
     ctaLink: '#contact',
   },
   {
-    title: 'What content do I need to prepare?',
-    keywords: 'content, prepare, assets, photos, copy',
+    title: 'Can we start small first?',
+    keywords: 'start small, phased, first version, expand later, small scope',
     answer:
-      'Useful starting assets include logo files, brand colors, product photos, product data, pricing or inquiry rules, campaign goals, payment preferences, and examples of websites you like.',
+      'Yes. Sensify is designed to support a phased approach. A brand can start with a strong homepage, selected product pages, and one campaign flow, then expand into a fuller website system after the first version is live.',
+    ctaText: 'Plan phase one',
+    ctaLink: '#contact',
+  },
+  {
+    title: 'What do I need to prepare before starting?',
+    keywords: 'prepare, preparation, what to prepare, photos, content ready, before starting, checklist',
+    answer:
+      'It helps to prepare product photos, product names, prices, descriptions, brand story, payment preferences, shipping rules, and examples of websites you like. Sensify can help organize these into a clear website structure.',
     ctaText: 'Prepare checklist',
     ctaLink: '#contact',
   },
   {
-    title: 'How do I start?',
-    keywords: 'start, begin, consultation, contact',
+    title: 'How is the cost decided?',
+    keywords: 'cost, pricing, price, budget, how much, investment',
     answer:
-      'Start with a free consultation. Sensify can review your current marketplace dependency, product structure, brand direction, website needs, and maintenance expectations.',
-    ctaText: 'Book a free consultation',
+      'Cost depends on the scope of the website, number of pages, product structure, visual complexity, integrations, and maintenance needs. Sensify should begin by mapping what the brand actually needs, so the project does not become overbuilt or unclear.',
+    ctaText: 'Map my scope',
+    ctaLink: '#contact',
+  },
+  {
+    title: 'How do we start?',
+    keywords: 'how to start, get started, consultation, begin, first step',
+    answer:
+      'The best starting point is a consultation. Sensify can review your current marketplace setup, product structure, brand direction, and business goals, then recommend the first owned-channel website scope.',
+    ctaText: 'Book a consultation',
     ctaLink: '#contact',
   },
 ];

@@ -86,18 +86,21 @@
   box-shadow: 0 0 14px var(--color-orange-glow);
 }
 
+/* Two long lines instead of the previous four short ones — the scale drops
+   proportionally so each line still renders unbroken on desktop. */
 .hero-title {
-  max-width: 1100px;
+  max-width: 1400px;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(4.5rem, 11vw, 11.5rem);
-  line-height: 0.86;
+  font-size: clamp(3.2rem, 8.6vw, 8.75rem);
+  line-height: 0.9;
   letter-spacing: -0.075em;
   color: var(--color-text);
 }
 
 .hero-title span {
   display: block;
+  text-wrap: balance;
 }
 
 .hero-lower {
@@ -290,8 +293,8 @@
   }
 
   .hero-title {
-    font-size: clamp(3rem, 15vw, 4.8rem);
-    line-height: 0.9;
+    font-size: clamp(2.5rem, 12vw, 3.6rem);
+    line-height: 0.94;
   }
 
   .hero-eyebrow {

@@ -152,10 +152,12 @@ export default function OptimizedVideo({
         </div>
       )}
 
+      {/* Error state stays silent: the gradient placeholder already covers
+          the frame, so failures never surface visible error copy. */}
       {hasError && (
-        <div className="optimized-video__error" role="status">
-          <span>Preview unavailable</span>
-        </div>
+        <span className="sr-only" role="status">
+          Video preview could not be loaded
+        </span>
       )}
 
       {showPlayButton && (

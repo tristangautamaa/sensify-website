@@ -23,56 +23,51 @@ import './VerticalPaymentDrop.css';
 
 // TODO: Replace payment fallback surfaces with approved brand/payment assets.
 // Suggested files:
-// /assets/payments/bca-va-card.png
-// /assets/payments/gopay-card.png
+// /assets/payments/va-card.png
 // /assets/payments/qris-card.png
+// /assets/payments/ewallet-card.png
 // /assets/payments/card-payment.png
 // /assets/payments/whatsapp-checkout.png
-// Optional logos:
-// /assets/payments/bca-logo.svg
-// /assets/payments/gopay-logo.svg
-// /assets/payments/qris-logo.svg
-// /assets/payments/visa-mastercard.svg
-// /assets/payments/whatsapp-logo.svg
+// Optional logos: matching *-logo.svg files in the same folder.
 const PAYMENT_CARDS = [
   {
-    id: 'bca-va',
-    method: 'BCA Virtual Account',
+    id: 'va',
+    method: 'Virtual Account',
     type: 'BANK TRANSFER',
     description:
-      'A structured bank transfer path for customers who prefer familiar account-based payment.',
-    asset: '/assets/payments/bca-va-card.png',
-    logo: '/assets/payments/bca-logo.svg',
+      'A structured bank-transfer path for customers who prefer account-based payment.',
+    asset: '/assets/payments/va-card.png',
+    logo: '/assets/payments/va-logo.svg',
     accent: '#378ADD',
     fallbackGradient: 'linear-gradient(135deg, #0C447C 0%, #07111C 55%, #378ADD 100%)',
   },
   {
     id: 'qris',
-    method: 'QRIS Payment',
-    type: 'SCAN PAYMENT',
-    description: 'A scan-to-pay flow designed for Indonesian mobile checkout behavior.',
+    method: 'QRIS',
+    type: 'SCAN TO PAY',
+    description: 'A scan-to-pay flow built around Indonesian mobile checkout behavior.',
     asset: '/assets/payments/qris-card.png',
     logo: '/assets/payments/qris-logo.svg',
     accent: '#F5F7FA',
     fallbackGradient: 'linear-gradient(135deg, #F5F7FA 0%, #DCE6F2 45%, #378ADD 100%)',
   },
   {
-    id: 'gopay',
-    method: 'GoPay / E-wallet',
-    type: 'MOBILE CHECKOUT',
-    description: 'A mobile-first wallet payment path for customers who want fast checkout.',
-    asset: '/assets/payments/gopay-card.png',
-    logo: '/assets/payments/gopay-logo.svg',
+    id: 'ewallet',
+    method: 'E-Wallet',
+    type: 'MOBILE PAYMENT',
+    description: 'A mobile-first wallet path for customers who want fast, familiar checkout.',
+    asset: '/assets/payments/ewallet-card.png',
+    logo: '/assets/payments/ewallet-logo.svg',
     accent: '#00AEEF',
     fallbackGradient: 'linear-gradient(135deg, #00AEEF 0%, #0C447C 58%, #07111C 100%)',
   },
   {
     id: 'card',
-    method: 'Credit / Debit Card',
+    method: 'Credit Card',
     type: 'DIRECT PAYMENT',
-    description: 'A card payment option for brands ready to support direct checkout.',
+    description: 'A direct card path for customers who prefer to pay in one step.',
     asset: '/assets/payments/card-payment.png',
-    logo: '/assets/payments/visa-mastercard.svg',
+    logo: '/assets/payments/card-logo.svg',
     accent: '#D85A30',
     fallbackGradient: 'linear-gradient(135deg, #D85A30 0%, #07111C 60%, #0C447C 100%)',
   },
@@ -267,7 +262,7 @@ export default function VerticalPaymentDrop() {
         ref={wrapRef}
         className={`vertical-payment-drop${reduced ? ' is-static' : ''}`}
         role="img"
-        aria-label="Payment method preview: BCA Virtual Account, QRIS payment, GoPay and e-wallets, credit or debit card, and WhatsApp assisted checkout descending through an owned checkout flow."
+        aria-label="Payment method preview: virtual account, QRIS, e-wallet, credit card, and WhatsApp-assisted checkout descending through an owned checkout flow."
       >
         {/* Enlarged masked stage: the edge fades happen well outside the
             card area, so glows and card shadows dissolve into the section
@@ -342,7 +337,7 @@ function DropCardSurface({ card }) {
       <div className="vpd-deco">
         <span className="vpd-arc vpd-arc--1" style={{ borderColor: card.accent }} />
         <span className="vpd-arc vpd-arc--2" style={{ borderColor: card.accent }} />
-        {card.id === 'bca-va' && (
+        {card.id === 'va' && (
           <span className="vpd-va-blocks">
             <i /><i /><i /><i />
           </span>
@@ -354,7 +349,7 @@ function DropCardSurface({ card }) {
             ))}
           </span>
         )}
-        {card.id === 'gopay' && (
+        {card.id === 'ewallet' && (
           <span className="vpd-waves">
             <i /><i /><i />
           </span>
@@ -375,7 +370,7 @@ function DropCardSurface({ card }) {
               onError={() => setLogoOk(false)}
             />
           ) : (
-            <span className="vpd-layer-label">SENSIFY PAY LAYER</span>
+            <span className="vpd-layer-label">SENSIFY CHECKOUT</span>
           )}
         </span>
       </div>

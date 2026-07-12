@@ -3,10 +3,10 @@ import VerticalPaymentDrop from './VerticalPaymentDrop.jsx';
 
 const PAYMENT_PATHS = [
   'QRIS',
-  'Virtual accounts',
+  'Virtual account',
   'Bank transfer',
   'E-wallet',
-  'Cards',
+  'Credit card',
   'Assisted checkout',
 ];
 
