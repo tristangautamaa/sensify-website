@@ -1,103 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-
 /**
- * Circular video visual with graceful source fallback:
- *   1. public/assets/infrastructure/operations-loop.m3u8 (via hls.js)
- *   2. public/assets/infrastructure/operations-loop.mp4
- *   3. animated CSS orb (no assets required)
+ * Circular operations visual — an animated CSS orb (rotating conic sheen +
+ * two pulsing rings). Self-contained, no media assets.
  *
- * Sources are probed with HEAD requests; an SPA-fallback HTML response is
- * treated as missing. hls.js is imported dynamically so it never lands in
- * the main bundle unless an HLS stream actually exists.
+ * This started as a video circle with HLS/MP4 source probing and a graceful
+ * orb fallback, but the operations-loop clip was never produced, so every
+ * load fired two dead HEAD requests (and shipped hls.js) only to land on the
+ * orb anyway. If a real clip is added later, reintroduce a lazy <video>
+ * here.
  */
-const HLS_SRC = '/assets/infrastructure/operations-loop.m3u8';
-const MP4_SRC = '/assets/infrastructure/operations-loop.mp4';
-
-async function sourceExists(url) {
-  try {
-    const res = await fetch(url, { method: 'HEAD' });
-    const type = res.headers.get('content-type') || '';
-    return res.ok && !type.includes('text/html');
-  } catch {
-    return false;
-  }
-}
+const circleClass =
+  'relative overflow-hidden rounded-full ' +
+  'h-[clamp(200px,22vw,400px)] w-[clamp(200px,22vw,400px)]';
 
 export default function HlsVideoCircle() {
-  const videoRef = useRef(null);
-  const [mode, setMode] = useState('checking'); // 'hls' | 'mp4' | 'fallback' | 'checking'
-
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      if (await sourceExists(HLS_SRC)) {
-        if (!cancelled) setMode('hls');
-        return;
-      }
-      if (await sourceExists(MP4_SRC)) {
-        if (!cancelled) setMode('mp4');
-        return;
-      }
-      if (!cancelled) setMode('fallback');
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (mode !== 'hls') return undefined;
-    const video = videoRef.current;
-    if (!video) return undefined;
-
-    // Safari plays HLS natively.
-    if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      video.src = HLS_SRC;
-      return undefined;
-    }
-
-    let hls = null;
-    let cancelled = false;
-    import('hls.js').then(({ default: Hls }) => {
-      if (cancelled) return;
-      if (Hls.isSupported()) {
-        hls = new Hls();
-        hls.loadSource(HLS_SRC);
-        hls.attachMedia(video);
-      } else {
-        setMode('fallback');
-      }
-    });
-
-    return () => {
-      cancelled = true;
-      if (hls) hls.destroy();
-    };
-  }, [mode]);
-
-  const circleClass =
-    'relative overflow-hidden rounded-full ' +
-    'h-[clamp(200px,22vw,400px)] w-[clamp(200px,22vw,400px)]';
-
-  if (mode === 'hls' || mode === 'mp4') {
-    return (
-      <div className={circleClass} style={{ boxShadow: '0 20px 60px rgba(12,68,124,0.25)' }}>
-        <video
-          ref={videoRef}
-          src={mode === 'mp4' ? MP4_SRC : undefined}
-          className="h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="Sensify operations loop"
-        />
-      </div>
-    );
-  }
-
-  // Fallback animated orb — subtle rotating conic sheen + two pulsing rings.
   return (
     <div
       className={circleClass}
