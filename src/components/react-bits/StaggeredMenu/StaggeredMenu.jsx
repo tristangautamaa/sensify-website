@@ -146,7 +146,7 @@ export default function StaggeredMenu({
         <a className="sm-logo" href="#home" aria-label="Sensify — home">
           {logoUrl ? (
             <>
-              <img src={logoUrl} alt="" width="46" height="46" />
+              <img src={logoUrl} alt="Sensify" width="46" height="46" />
               <span className="sm-logo-word">
                 Sensify<sup>®</sup>
               </span>
